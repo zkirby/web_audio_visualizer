@@ -1,5 +1,6 @@
 import React from "react";
 import Menu from "../components/Menu";
+import AudioNode from "../components/AudioNode";
 
 import Oscillator from "../components/Sources/Oscillator";
 import ConstantSource from "../components/Sources/ConstantSource";
@@ -13,42 +14,70 @@ const nodes = {
 };
 export default class Platform extends React.Component {
   state = {
-    selectedNode: Oscillator,
-    activeNodes: [],
+    selectedNode: undefined,
+    activeNodes: {},
   };
 
   addActiveNode = ({ pageY, pageX }) => {
     this.setState(({ selectedNode, activeNodes }) => {
+      if (!selectedNode) {
+        return;
+      }
       return {
-        activeNodes: [...activeNodes, [selectedNode, { pageY, pageX }]],
+        activeNodes: {
+          ...activeNodes,
+          [`${pageY}, ${pageX}`]: selectedNode,
+        },
       };
     });
   };
 
-  setSelectedNode = (selectedNode, e) => {
-    this.setState({ selectedNode });
-    e.stopPropagation();
+  setSelectedNode = (incomingSelection) => {
+    this.setState(({ selectedNode }) => {
+      if (selectedNode?.name === incomingSelection?.name) {
+        return { selectedNode: undefined };
+      }
+      return { selectedNode: incomingSelection };
+    });
   };
 
-  clearActiveNodes = (e) => {
+  clearActiveNodes = () => {
     this.setState({ activeNodes: [] });
-    e.stopPropagation();
   };
+
+  removeNode = (key) => {
+    this.setState(({ activeNodes}) => {
+      const newNodes = { ...activeNodes }
+      delete newNodes[key];
+      return { activeNodes: newNodes };
+    })
+  }
 
   render() {
     return (
-      <div className="platform" onClick={this.addActiveNode}>
-        <div className="super-menu">
+      <div style={{ cursor: this.state.selectedNode ? 'pointer': 'default' }} className="platform" onClick={this.addActiveNode}>
+        <div onClick={(e) => e.stopPropagation()} className="super-menu">
           <Menu
             nodes={nodes}
             setSelectedNode={this.setSelectedNode}
             selectedNode={this.state.selectedNode}
           />
           <span onClick={this.clearActiveNodes}> clear </span>
+          <span onClick={() => console.log('playing')}> play </span>
         </div>
-        {this.state.activeNodes.map(([Node, { pageY, pageX }], i) => (
-          <Node key={i} top={pageY} left={pageX} audio={this.props.audio} />
-        ))}
+        {Object.entries(this.state.activeNodes).map(([key, Node]) => {
+          const [pageY, pageX] = key.split(",");
+          return (
+            <AudioNode
+              key={key}
+              top={pageY}
+              left={pageX}
+              audio={this.props.audio}
+              Node={Node}
+              removeNode={() => this.removeNode(key)}
+            />
+          );
+        })}
       </div>
     );
   }

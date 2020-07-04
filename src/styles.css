@@ -1,23 +1,54 @@
 .platform {
   height: 100vh;
   width: 100vw;
-  cursor: pointer;
 }
 
 .super-menu {
   position: absolute;
+  background: white;
   z-index: 100;
+  box-shadow: -7px 10px 14px 5px rgba(0,0,0,0.19);
+  padding: 20px;
 }
-
+.can-select:hover {
+  color: lawngreen;
+  cursor: pointer;
+}
 .selected {
   font-weight: bold;
   color: lawngreen;
 }
 
-.source {
+.node {
+  height: 135px;
+  width: 135px;
   position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.node:hover > .node-overlay, .node-overlay:hover {
+  opacity: 1;
+}
+
+.node-overlay {
+  position: absolute;
+  display: flex;
+  opacity: 0;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.node-overlay > .close {
+  color: red;
+}
+
+/* ------------------------- */
+.source {
   opacity: 0.8;
   transition: 0.5s;
+  position: relative;
+  left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
 }
 

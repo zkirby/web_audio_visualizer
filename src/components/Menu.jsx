@@ -11,8 +11,10 @@ const Menu = ({ nodes, setSelectedNode, selectedNode }) => (
               {Object.entries(nodes).map(([name, value]) => (
                 <li
                   key={name}
-                  className={name === selectedNode.name ? "selected" : ""}
-                  onClick={(e) => setSelectedNode(value, e)}
+                  className={
+                    name === selectedNode?.name ? "selected" : "can-select"
+                  }
+                  onClick={() => setSelectedNode(value)}
                 >
                   {name}
                 </li>
