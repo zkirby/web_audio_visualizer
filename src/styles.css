@@ -1,0 +1,49 @@
+.platform {
+  height: 100vh;
+  width: 100vw;
+  cursor: pointer;
+}
+
+.super-menu {
+  position: absolute;
+  z-index: 100;
+}
+
+.selected {
+  font-weight: bold;
+  color: lawngreen;
+}
+
+.source {
+  position: absolute;
+  opacity: 0.8;
+  transition: 0.5s;
+  transform: translate(-50%, -50%);
+}
+
+.source > div {
+  font-size: 16px;
+  font-weight: bold;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+.source:hover {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.source {
+  height: 100px;
+  width: 100px;
+}
+
+.oscillator {
+  background: rebeccapurple;
+}
+
+.constant-source {
+  background: blue;
+}
