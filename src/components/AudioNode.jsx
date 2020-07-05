@@ -1,13 +1,12 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const AudioNode = ({ coords, Node, removeNode, currentInLink, selectNode }) => {
-  const [top, left] = coords.split(",");
+const AudioNode = ({ left, top, Node, removeNode, isSelected, selectNode }) => {
   return (
     <div
       onClick={selectNode}
       style={{ left: `${left}px`, top: `${top}px` }}
-      className={`node ${currentInLink === coords ? "selected-node" : ""}`}
+      className={`node ${isSelected ? "selected-node" : ""}`}
     >
       <div className="node-overlay">
         <div onClick={removeNode} className="close">

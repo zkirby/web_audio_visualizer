@@ -1,8 +1,10 @@
 import React from "react";
+import { Graph } from "../utils/graphs";
+import { noProp } from "../utils/utils.js";
+
 import Menu from "../components/Menu";
 import AudioNode from "../components/AudioNode";
 import Link from "../components/Link";
-import { noProp } from "./utils.js"
 
 import Oscillator from "../components/Sources/Oscillator";
 import ConstantSource from "../components/Sources/ConstantSource";
@@ -16,38 +18,42 @@ const nodes = {
   },
   Destinations: {
     Speakers,
-  }
+  },
 };
 
 const defaultState = {
-  activeNodes: {},
-  activeLinks: [],
-  selectedNodeType: undefined,
-  currentInLink: undefined,
+  activeGraphs: {},
+  error: undefined,
+  selectedNodeRootType: undefined,
+  proposedNode: undefined, // The node of the current graph to try merging
 };
 export default class Platform extends React.Component {
   state = defaultState;
 
-  addActiveNode = ({ pageY, pageX }) => {
-    this.setState(({ selectedNodeType, activeNodes }) => {
-      if (!selectedNodeType) {
+  /** Add a new graph to the platform */
+  addNewGraph = ({ pageY, pageX }) => {
+    this.setState(({ selectedNodeRootType, activeGraphs }) => {
+      if (!selectedNodeRootType) {
         return;
       }
+      const key = `${pageY}, ${pageX}`;
+      const graph = new Graph(key);
       return {
-        activeNodes: {
-          ...activeNodes,
-          [`${pageY}, ${pageX}`]: selectedNodeType,
+        activeGraphs: {
+          ...activeGraphs,
+          [key]: graph,
         },
       };
     });
   };
 
-  setselectedNodeType = (incomingSelection) => {
-    this.setState(({ selectedNodeType }) => {
-      if (selectedNodeType?.name === incomingSelection?.name) {
-        return { selectedNodeType: undefined };
+  /** Change the node root type based on menu selection, this will seed a new graph */
+  setselectedNodeRootType = (incomingSelection) => {
+    this.setState(({ selectedNodeRootType }) => {
+      if (selectedNodeRootType?.name === incomingSelection.name) {
+        return { selectedNodeRootType: undefined };
       }
-      return { selectedNodeType: incomingSelection };
+      return { selectedNodeRootType: incomingSelection };
     });
   };
 
@@ -55,68 +61,73 @@ export default class Platform extends React.Component {
     this.setState(defaultState);
   };
 
-  removeNode = (key) => {
-    // remove node and all associated links
-    this.setState(({ currentInLink, activeNodes, activeLinks }) => {
-      const newNodes = { ...activeNodes };
-      delete newNodes[key];
+  /** removes a node from a graph */
+  removeNode = (rootKey, key) => {
+    this.setState(({ activeGraphs }) => {
+      const newActiveGraphs = { ...activeGraphs };
+      const graph = newActiveGraphs[rootKey];
+      const newKey = graph.removeNode(key);
 
-      const newLinks = [...activeLinks].filter(
-        ([inLink, outLink]) => inLink !== key && outLink !== key
-      );
-      const newInLink = currentInLink === key ? undefined : currentInLink;
-      return { activeNodes: newNodes, activeLinks: newLinks, currentInLink: newInLink };
+      // If the new key is undefined, this
+      // was the last node in the graph.
+      delete newActiveGraphs[rootKey];
+      if (newKey) {
+        newActiveGraphs[newKey] = graph;
+      }
+
+      return {
+        activeGraphs: newNodes,
+        activeLinks: newLinks,
+        proposedNode: newInLink,
+      };
     });
   };
 
-  createLink = (inLink, outLink) => {
-    this.setState(({ activeLinks }) => {
-      return { activeLinks: [...activeLinks, [inLink, outLink]] };
+  mergeGraphs = (keys1, keys2) => {
+    // See if these two graphs are eligible to merge,
+    // if not throw an error as to why.
+    const g1 = this.state.activeGraphs[keys1.rootKey];
+    const g2 = this.state.activeGraphs[keys2.rootKey];
+    const graph = Graph.merge(g1, g2, keys1.nodeKey, keys2.nodeKey);
+
+    this.setState(({ activeGraphs }) => {
+      const newGraphs = { ...activeGraphs };
+      delete newGraphs[keys1.rootKey];
+      delete newGraphs[keys2.rootKey];
+
+      return { activeGraphs: { ...newGraphs, [graph.key]: graph } };
     });
   };
 
-  setInLink = (key) => {
-    if (this.state.currentInLink) {
-      this.createLink(this.state.currentInLink, key);
-      this.setState({ currentInLink: undefined });
+  setProposedNode = (rootKey, nodeKey) => {
+    if (this.state.proposedNode) {
+      this.mergeGraphs(this.state.proposedNode, { rootKey, nodeKey });
+      this.setState({ proposedNode: undefined });
     } else {
-      this.setState({ currentInLink: key });
+      this.setState({ proposedNode: { rootKey, nodeKey } });
     }
   };
 
   render() {
     return (
       <div
-        style={{ cursor: this.state.selectedNodeType ? "pointer" : "default" }}
+        style={{
+          cursor: this.state.selectedNodeRootType ? "pointer" : "default",
+        }}
         className="platform"
-        onClick={this.addActiveNode}
+        onClick={this.addNewRoot}
       >
         <div onClick={noProp()} className="super-menu">
           <Menu
             nodes={nodes}
-            setselectedNodeType={this.setselectedNodeType}
-            selectedNodeType={this.state.selectedNodeType}
+            setselectedNodeRootType={this.setselectedNodeRootType}
+            selectedNodeRootType={this.state.selectedNodeRootType}
           />
           <span onClick={this.clearAll}> clear </span>
           <span onClick={() => console.log("playing")}> play </span>
         </div>
-        {this.state.activeLinks.map(([inLink, outLink]) => {
-          return (
-            <Link key={inLink + outLink} inLink={inLink} outLink={outLink} />
-          );
-        })}
-        {Object.entries(this.state.activeNodes).map(([key, Node]) => {
-          return (
-            <AudioNode
-              key={key}
-              coords={key}
-              audio={this.props.audio}
-              Node={Node}
-              currentInLink={this.state.currentInLink}
-              removeNode={noProp(() => this.removeNode(key))}
-              selectNode={noProp(() => this.setInLink(key))}
-            />
-          );
+        {Object.values(this.state.activeGraphs).flatMap(([key, graph]) => {
+          return graph.renderAll();
         })}
       </div>
     );
