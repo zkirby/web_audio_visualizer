@@ -1,6 +1,6 @@
 import React from "react";
 
-const Menu = ({ nodes, setSelectedNode, selectedNode }) => (
+const Menu = ({ nodes, setselectedNodeType, selectedNodeType }) => (
   <div className="menu">
     <ul>
       {Object.entries(nodes).map(([parent, nodes]) => {
@@ -12,9 +12,9 @@ const Menu = ({ nodes, setSelectedNode, selectedNode }) => (
                 <li
                   key={name}
                   className={
-                    name === selectedNode?.name ? "selected" : "can-select"
+                    name === selectedNodeType?.name ? "selected" : "can-select"
                   }
-                  onClick={() => setSelectedNode(value)}
+                  onClick={() => setselectedNodeType(value)}
                 >
                   {name}
                 </li>

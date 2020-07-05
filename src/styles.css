@@ -3,6 +3,12 @@
   width: 100vw;
 }
 
+.link {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
 .super-menu {
   position: absolute;
   background: white;
@@ -26,7 +32,11 @@
   transform: translate(-50%, -50%);
 }
 
-.node:hover > .node-overlay, .node-overlay:hover {
+.selected-node, .node:hover {
+  border: 6px dotted palegreen;
+}
+
+.node:hover > .node-overlay {
   opacity: 1;
 }
 
@@ -44,7 +54,6 @@
 
 /* ------------------------- */
 .source {
-  opacity: 0.8;
   transition: 0.5s;
   position: relative;
   left: 50%;
@@ -59,11 +68,6 @@
   top: 50%;
   transform: translateY(-50%);
   text-align: center;
-}
-
-.source:hover {
-  opacity: 1;
-  transition: 0.5s;
 }
 
 .source {
