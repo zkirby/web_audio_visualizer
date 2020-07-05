@@ -6,6 +6,7 @@ import { noProp } from "./utils.js"
 
 import Oscillator from "../components/Sources/Oscillator";
 import ConstantSource from "../components/Sources/ConstantSource";
+import Speakers from "../components/Destinations/Speakers";
 
 // Possible audio options
 const nodes = {
@@ -13,6 +14,9 @@ const nodes = {
     Oscillator,
     ConstantSource,
   },
+  Destinations: {
+    Speakers,
+  }
 };
 
 const defaultState = {

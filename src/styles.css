@@ -30,6 +30,7 @@
   width: 135px;
   position: absolute;
   transform: translate(-50%, -50%);
+  cursor: pointer;
 }
 
 .selected-node, .node:hover {
@@ -53,14 +54,14 @@
 }
 
 /* ------------------------- */
-.source {
-  transition: 0.5s;
+.destination, .source {
   position: relative;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
+.destination > div,
 .source > div {
   font-size: 16px;
   font-weight: bold;
@@ -68,6 +69,18 @@
   top: 50%;
   transform: translateY(-50%);
   text-align: center;
+}
+
+.destination {
+  width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-top: 85px solid #555;
+}
+
+.speaker {
+  background: grey;
 }
 
 .source {
