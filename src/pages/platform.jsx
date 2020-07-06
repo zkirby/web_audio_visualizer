@@ -84,8 +84,6 @@ export default class Platform extends React.Component {
   };
 
   mergeGraphs = (keys1, keys2) => {
-    // See if these two graphs are eligible to merge,
-    // if not throw an error as to why.
     const g1 = this.state.activeGraphs[keys1.rootKey];
     const g2 = this.state.activeGraphs[keys2.rootKey];
     const graph = Graph.merge(g1, g2, keys1.nodeKey, keys2.nodeKey);
@@ -126,7 +124,7 @@ export default class Platform extends React.Component {
           <span onClick={this.clearAll}> clear </span>
           <span onClick={() => console.log("playing")}> play </span>
         </div>
-        {Object.values(this.state.activeGraphs).flatMap(([key, graph]) => {
+        {Object.values(this.state.activeGraphs).flatMap(([, graph]) => {
           return graph.renderAll();
         })}
       </div>

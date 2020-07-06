@@ -1,17 +1,21 @@
+import React from 'react';
+import AudioNode from '../components/AudioNode';
 export class Graph {
   constructor(rootCoords, root) {
     this.key = rootCoords;
-    this.sinkBlocks = root.isSource ? [rootCoords] : [];
-    this.sourceBlocks = root.isSource ? [rootCoords] : [];
+    if (root) {
+      this.sinkBlocks = root.isSource ? [rootCoords] : [];
+      this.sourceBlocks = root.isSource ? [rootCoords] : [];
 
-    this.nodes = { [rootCoords]: root };
-    this.links = { [rootCoords]: [] };
+      this.nodes = { [rootCoords]: root };
+      this.links = { [rootCoords]: [] };
+    }
   }
 
   // Merges two graphs by the time it gets
   // here, we can assume both are allowed to create another connection.
   static merge(g1, g2, node1, node2) {
-    const graph = new Graph(g1.key, {});
+    const graph = new Graph(g1.key);
     graph.sinkBlocks = [...g1.sinkBlocks, ...g2.sinkBlocks];
     graph.sourceBlocks = [...g1.sourceBlocks, ...g2.sourceBlocks];
     graph.nodes = { ...g1.nodes, ...g2.nodes };
@@ -22,14 +26,19 @@ export class Graph {
   }
 
   // link two nodes
-  link(node1, node2) {
+  link(node1Key, node2Key) {
+    const node1 = this.nodes[node1Key];
+    const node2 = this.nodes[node2Key];
     const newLink = new Link(node1, node2);
-    this.links[node1.key].push(newLink);
-    this.links[node2.key].push(newLink);
+    this.links[node1Key].push(newLink);
+    this.links[node2Key].push(newLink);
   }
 
   // remove a node from this graph
   removeNode(nodeCoords) {
+    // If this is the last node, delete the graph.
+
+    // If this was a source
     console.log("deleting node", nodeCoords);
   }
 
@@ -42,10 +51,9 @@ export class Graph {
   }
 }
 
-const soures = [];
-const detinations = [];
+export const nodeTypes = {
 
-//export const nodeType =
+}
 
 export class Node {
   constructor(nodeType) {
@@ -53,7 +61,7 @@ export class Node {
   }
 
   render() {
-    return asdfs;
+    return <AudioNode />
   }
 }
 
