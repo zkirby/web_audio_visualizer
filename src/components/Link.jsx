@@ -6,8 +6,8 @@ export default class Link extends React.Component {
   }
 
   render() {
-    const [y1, x1] = this.props.inLink.split(",");
-    const [y2, x2] = this.props.outLink.split(",");
+    const [y1, x1] = this.props.link1.split(",");
+    const [y2, x2] = this.props.link2.split(",");
     return (
       <div className="link">
         <svg height="100%" width="100%">

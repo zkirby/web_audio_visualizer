@@ -1,14 +1,20 @@
-import React from 'react';
-import AudioNode from '../components/AudioNode';
+import React from "react";
+import { Node } from "./nodes";
+import { noProp } from "./utils";
+
+import Link from "../components/Link";
 export class Graph {
-  constructor(rootCoords, root) {
+  constructor(rootCoords, rootType) {
     this.key = rootCoords;
-    if (root) {
+    this.audio = window.AudioContext || window.webkitAudioContext;
+
+    if (rootType) {
+      const root = new Node(rootCoords, rootType);
       this.sinkBlocks = root.isSource ? [rootCoords] : [];
       this.sourceBlocks = root.isSource ? [rootCoords] : [];
 
       this.nodes = { [rootCoords]: root };
-      this.links = { [rootCoords]: [] };
+      this.links = [];
     }
   }
 
@@ -27,14 +33,11 @@ export class Graph {
 
   // link two nodes
   link(node1Key, node2Key) {
-    const node1 = this.nodes[node1Key];
-    const node2 = this.nodes[node2Key];
-    const newLink = new Link(node1, node2);
-    this.links[node1Key].push(newLink);
-    this.links[node2Key].push(newLink);
+    this.nodes[node1Key].push(node2Key);
+    this.nodes[node2Key].push(node1Key);
+    this.links.push([node1Key, node2Key]);
   }
 
-  // remove a node from this graph
   removeNode(nodeCoords) {
     // If this is the last node, delete the graph.
 
@@ -42,35 +45,23 @@ export class Graph {
     console.log("deleting node", nodeCoords);
   }
 
+  play() {
+    // Starting from sources connect through all the nodes.
+  }
+
   // render all nodes and all links
-  renderAll() {
+  renderAll({ removeNode, selectNode, selectedNodeKey }) {
     return [
-      ...Object.values(this.links.flatMap((l) => l.render())),
-      ...Object.values(this.nodes).map((n) => n.render()),
+      ...this.links.map(([link1, link2]) => (
+        <Link link1={link1} link2={link2} />
+      )),
+      ...Object.entries(this.nodes).map(([k, n]) =>
+        n.render({
+          removeNode: noProp(() => removeNode(this.key, k)),
+          selectNode: noProp(() => selectNode(this.key, k)),
+          isSelected: selectedNodeKey === k,
+        })
+      ),
     ];
-  }
-}
-
-export const nodeTypes = {
-
-}
-
-export class Node {
-  constructor(nodeType) {
-    this.isSource = sources.includes(nodeType);
-  }
-
-  render() {
-    return <AudioNode />
-  }
-}
-
-export class Link {
-  constructor(node1, node2) {
-    console.log("made link");
-  }
-
-  render() {
-    return asdfasf
   }
 }

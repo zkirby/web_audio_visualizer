@@ -1,25 +1,9 @@
 import React from "react";
 import { Graph } from "../utils/graphs";
+import { nodeTypes } from "../utils/nodes";
 import { noProp } from "../utils/utils.js";
 
 import Menu from "../components/Menu";
-import AudioNode from "../components/AudioNode";
-import Link from "../components/Link";
-
-import Oscillator from "../components/Sources/Oscillator";
-import ConstantSource from "../components/Sources/ConstantSource";
-import Speakers from "../components/Destinations/Speakers";
-
-// Possible audio options
-const nodes = {
-  Sources: {
-    Oscillator,
-    ConstantSource,
-  },
-  Destinations: {
-    Speakers,
-  },
-};
 
 const defaultState = {
   activeGraphs: {},
@@ -37,7 +21,7 @@ export default class Platform extends React.Component {
         return;
       }
       const key = `${pageY}, ${pageX}`;
-      const graph = new Graph(key);
+      const graph = new Graph(key, selectedNodeRootType);
       return {
         activeGraphs: {
           ...activeGraphs,
@@ -61,12 +45,11 @@ export default class Platform extends React.Component {
     this.setState(defaultState);
   };
 
-  /** removes a node from a graph */
-  removeNode = (rootKey, key) => {
+  removeNode = (rootKey, nodeKey) => {
     this.setState(({ activeGraphs }) => {
       const newActiveGraphs = { ...activeGraphs };
       const graph = newActiveGraphs[rootKey];
-      const newKey = graph.removeNode(key);
+      const newKey = graph.removeNode(nodeKey);
 
       // If the new key is undefined, this
       // was the last node in the graph.
@@ -76,9 +59,7 @@ export default class Platform extends React.Component {
       }
 
       return {
-        activeGraphs: newNodes,
-        activeLinks: newLinks,
-        proposedNode: newInLink,
+        activeGraphs: newActiveGraphs,
       };
     });
   };
@@ -113,19 +94,24 @@ export default class Platform extends React.Component {
           cursor: this.state.selectedNodeRootType ? "pointer" : "default",
         }}
         className="platform"
-        onClick={this.addNewRoot}
+        onClick={this.addNewGraph}
       >
         <div onClick={noProp()} className="super-menu">
           <Menu
-            nodes={nodes}
+            nodes={nodeTypes}
             setselectedNodeRootType={this.setselectedNodeRootType}
             selectedNodeRootType={this.state.selectedNodeRootType}
           />
           <span onClick={this.clearAll}> clear </span>
           <span onClick={() => console.log("playing")}> play </span>
         </div>
-        {Object.values(this.state.activeGraphs).flatMap(([, graph]) => {
-          return graph.renderAll();
+        {Object.values(this.state.activeGraphs).flatMap((graph) => {
+          console.log('graph: ', graph)
+          return graph.renderAll({
+            removeNode: this.removeNode,
+            selectNode: this.setProposedNode,
+            selectedNodeKey: this.setState.proposedNode?.nodeKey,
+          });
         })}
       </div>
     );

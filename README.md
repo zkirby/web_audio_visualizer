@@ -6,6 +6,4 @@ Todo:
 - [] add play functionality to source nodes
 
 Next:
-
-- [] Finish node class
-- [] Finish link class
+- [] Need to convert graphs and nodes into react components.
