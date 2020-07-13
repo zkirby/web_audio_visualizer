@@ -1,9 +1,8 @@
 Todo:
 
-- [] need to allows nodes to be removed
-- [] add more nodes
-- [] add edit functionality to nodes
-- [] add play functionality to source nodes
+- [] Delete the graph and nodes files
 
 Next:
-- [] Need to convert graphs and nodes into react components.
+
+- [] Figure out how to add nodes
+- [X] Need to convert graphs and nodes into react components.

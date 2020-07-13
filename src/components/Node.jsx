@@ -1,33 +1,19 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import Oscillator from "../components/Sources/Oscillator";
-import ConstantSource from "../components/Sources/ConstantSource";
-import Speakers from "../components/Destinations/Speakers";
-
-export const nodeTypes = {
-  Sources: {
-    Oscillator,
-    ConstantSource,
-  },
-  Destinations: {
-    Speakers,
-  },
-};
-
-export class Node extends React.Component {
-  constructor(coords, nodeType) {
-    this.isSource = Object.keys(nodeTypes.Sources).includes(nodeType.name);
+export default class Node extends React.Component {
+  constructor(props) {
+    super(props);
     this.links = [];
-    this.coords = coords.split(",");
   }
 
   link(nodeKey) {
     this.links.push(nodeKey);
   }
 
-  render({ selectNode, removeNode, isSelected }) {
-    const [top, left] = this.coords;
+  render() {
+    const { coords, selectNode, removeNode, isSelected, NodeType } = this.props;
+    const [top, left] = coords.split(",");
     return (
       <div
         onClick={selectNode}
@@ -42,7 +28,7 @@ export class Node extends React.Component {
             <FontAwesomeIcon icon="pen" />
           </div>
         </div>
-        <Node />
+        <NodeType />
       </div>
     );
   }

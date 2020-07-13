@@ -1,7 +1,6 @@
 import React from "react";
-import { Graph } from "../utils/graphs";
-import { nodeTypes } from "../utils/nodes";
-import { noProp } from "../utils/utils.js";
+import Graph from "../components/Graph";
+import { noProp, nodeTypes } from "../utils/utils.js";
 
 import Menu from "../components/Menu";
 
@@ -20,12 +19,12 @@ export default class Platform extends React.Component {
       if (!selectedNodeRootType) {
         return;
       }
+
       const key = `${pageY}, ${pageX}`;
-      const graph = new Graph(key, selectedNodeRootType);
       return {
         activeGraphs: {
           ...activeGraphs,
-          [key]: graph,
+          [key]: { rootKey: key, rootType: selectedNodeRootType },
         },
       };
     });
@@ -45,11 +44,9 @@ export default class Platform extends React.Component {
     this.setState(defaultState);
   };
 
-  removeNode = (rootKey, nodeKey) => {
+  removeNode = (rootKey, newKeys) => {
     this.setState(({ activeGraphs }) => {
       const newActiveGraphs = { ...activeGraphs };
-      const graph = newActiveGraphs[rootKey];
-      const newKey = graph.removeNode(nodeKey);
 
       // If the new key is undefined, this
       // was the last node in the graph.
@@ -57,7 +54,6 @@ export default class Platform extends React.Component {
       if (newKey) {
         newActiveGraphs[newKey] = graph;
       }
-
       return {
         activeGraphs: newActiveGraphs,
       };
@@ -80,7 +76,7 @@ export default class Platform extends React.Component {
 
   setProposedNode = (rootKey, nodeKey) => {
     if (this.state.proposedNode) {
-      this.mergeGraphs(this.state.proposedNode, { rootKey, nodeKey });
+      //this.mergeGraphs(this.state.proposedNode, { rootKey, nodeKey });
       this.setState({ proposedNode: undefined });
     } else {
       this.setState({ proposedNode: { rootKey, nodeKey } });
@@ -105,14 +101,15 @@ export default class Platform extends React.Component {
           <span onClick={this.clearAll}> clear </span>
           <span onClick={() => console.log("playing")}> play </span>
         </div>
-        {Object.values(this.state.activeGraphs).flatMap((graph) => {
-          console.log('graph: ', graph)
-          return graph.renderAll({
-            removeNode: this.removeNode,
-            selectNode: this.setProposedNode,
-            selectedNodeKey: this.setState.proposedNode?.nodeKey,
-          });
-        })}
+        {Object.entries(this.state.activeGraphs).map(([key, graphProps]) => (
+          <Graph
+            key={key}
+            {...graphProps}
+            selectNode={this.setProposedNode}
+            removeNode={this.removeNode}
+            selectedNodeKey={this.state.proposedNode}
+          />
+        ))}
       </div>
     );
   }
