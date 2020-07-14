@@ -2,15 +2,6 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class Node extends React.Component {
-  constructor(props) {
-    super(props);
-    this.links = [];
-  }
-
-  link(nodeKey) {
-    this.links.push(nodeKey);
-  }
-
   render() {
     const { coords, selectNode, removeNode, isSelected, NodeType } = this.props;
     const [top, left] = coords.split(",");

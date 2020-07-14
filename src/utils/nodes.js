@@ -1,49 +1,29 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { nodeTypes } from "./utils";
 
-import Oscillator from "../components/Sources/Oscillator";
-import ConstantSource from "../components/Sources/ConstantSource";
-import Speakers from "../components/Destinations/Speakers";
-
-export const nodeTypes = {
-  Sources: {
-    Oscillator,
-    ConstantSource,
-  },
-  Destinations: {
-    Speakers,
-  },
-};
-
-export class Node extends React.Component {
+export default class Node {
   constructor(coords, nodeType) {
-    this.isSource = Object.keys(nodeTypes.Sources).includes(nodeType.name);
-    this.links = [];
-    this.coords = coords.split(",");
-  }
-
-  link(nodeKey) {
-    this.links.push(nodeKey);
-  }
-
-  render({ selectNode, removeNode, isSelected }) {
-    const [top, left] = this.coords;
-    return (
-      <div
-        onClick={selectNode}
-        style={{ left: `${left}px`, top: `${top}px` }}
-        className={`node ${isSelected ? "selected-node" : ""}`}
-      >
-        <div className="node-overlay">
-          <div onClick={removeNode} className="close">
-            <FontAwesomeIcon icon="times-circle" />
-          </div>
-          <div className="edit">
-            <FontAwesomeIcon icon="pen" />
-          </div>
-        </div>
-        <Node />
-      </div>
+    // The only way a single node can be both a sink and a source is if
+    // it is a source
+    this.isSource = this.isSink = Object.keys(nodeTypes.Sources).includes(
+      nodeType.name
     );
+    this.maxLinks = 2;
+    this.coords = coords;
+    this.nodeType = nodeType;
+    this.links = [];
+  }
+  
+  addLink(nodeCoords) {
+    if (this.links.length < this.maxLinks) {
+      this.links.push(nodeCoords);
+    } else {
+      throw new Error('This node is already at max links');
+    }
+  }
+
+  unLink(nodeCoords) {
+    if (this.links.includes(nodeCoords)) {
+      this.links.splice(this.links.indexOf(nodeCoords), 1);
+    }
   }
 }
