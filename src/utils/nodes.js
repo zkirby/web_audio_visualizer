@@ -11,6 +11,7 @@ export default class Node {
     this.coords = coords;
     this.nodeType = nodeType;
     this.links = [];
+    this.options = {};
   }
 
   addLink(nodeCoords) {

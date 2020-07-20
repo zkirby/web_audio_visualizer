@@ -62,7 +62,7 @@ export default class Node extends React.Component {
               <FontAwesomeIcon icon="pen" />
             </div>
           </div>
-          <this.type updateParent={this.updateParent} parent={parent} />
+          <this.type updateParent={this.updateParent} parent={parent} node={node} />
         </div>
         <div>
           {this.state.parent &&

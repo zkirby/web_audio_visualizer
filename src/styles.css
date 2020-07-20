@@ -102,9 +102,6 @@
   background: blue;
 }
 
-.gain {
-  background: green;
-}
 
 /* Oscillator */
 .oscillator {
@@ -115,4 +112,16 @@
   position: relative;
     text-align: center;
     top: 50px;
+}
+
+/* Gain */
+.gain {
+  background: green;
+}
+
+.gain > input {
+  width: 30px;
+    position: relative;
+    top: 45px;
+    left: 32px;
 }
