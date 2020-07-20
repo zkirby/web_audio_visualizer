@@ -27,4 +27,4 @@ export const nodeIsSource = (nodeType) =>
 export const fakeAudio = {
   context: new Proxy({}, { get: () => () => fakeAudio }),
   connect: () => {},
-}
+};

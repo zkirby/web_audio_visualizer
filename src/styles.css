@@ -27,10 +27,11 @@
   color: lawngreen;
   cursor: pointer;
 }
-.selected {
+.selected  {
   font-weight: bold;
   color: lawngreen;
 }
+
 
 .node {
   height: 135px;
@@ -40,8 +41,28 @@
   cursor: pointer;
 }
 
-.selected-node, .node:hover {
+.node .node-edit-overlay {
+  position: absolute;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+    background: black;
+    opacity: 0.7;
+    color: red;
+  display: flex;
+  flex-direction: column;
+}
+
+.node .node-edit-overlay input {
+  width: 25%;
+}
+
+.selected-node:not(.max-links), .node:hover:not(.max-links) {
   border: 6px dotted palegreen;
+}
+
+.node:hover.max-links {
+  border: 6px dotted grey;
 }
 
 .node:hover > .node-overlay {
@@ -59,6 +80,8 @@
 .node-overlay > .close {
   color: red;
 }
+
+
 
 /* ------------------------- */
 .destination, .source, .filter {

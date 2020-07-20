@@ -9,16 +9,19 @@ export default class Node extends React.Component {
 
     this.state = {
       parent: undefined,
+      editOpen: false,
+      editContent: <div></div>,
     };
     this.key = this.props.node.coords;
     this.type = this.props.node.nodeType;
   }
 
+  toggleEdit = () => {
+    this.setState(({ editOpen }) => ({ editOpen: !editOpen }));
+  };
+
   updateParent = (parent) => {
-    console.log('updating parent', parent);
-    this.setState({
-      parent,
-    });
+    this.setState({ parent });
   };
 
   render() {
@@ -41,15 +44,16 @@ export default class Node extends React.Component {
       1
     );
     const childNodes = allNodes.filter((n) => node.links.includes(n.coords));
-
+  
     return (
       <>
+        {/* Node */}
         <div
-          onClick={noProp(() => selectNode(graphKey, this.key))}
+          onClick={noProp(() => node.canAddLink() && selectNode(graphKey, this.key))}
           style={{ left: `${left}px`, top: `${top}px` }}
           className={`node ${
             selectedNodeKey === this.key ? "selected-node" : ""
-          }`}
+          } ${node.canAddLink() ? '' : 'max-links'}`}
         >
           <div className="node-overlay">
             <div
@@ -58,12 +62,19 @@ export default class Node extends React.Component {
             >
               <FontAwesomeIcon icon="times-circle" />
             </div>
-            <div className="edit">
+            <div className="edit" onClick={noProp(() => this.toggleEdit())}>
               <FontAwesomeIcon icon="pen" />
             </div>
           </div>
-          <this.type updateParent={this.updateParent} parent={parent} node={node} />
+          <this.type
+            updateParent={this.updateParent}
+            editOpen={this.state.editOpen}
+            toggleEdit={this.toggleEdit}
+            parent={parent}
+            node={node}
+          />
         </div>
+        {/* Children */}
         <div>
           {this.state.parent &&
             this.props.node.links.map((outLink) => (

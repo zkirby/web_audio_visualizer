@@ -1,13 +1,12 @@
 import React from "react";
 import Node from "./Node";
-import { fakeAudio } from '../utils/utils';
+import { fakeAudio } from "../utils/utils";
 
 export default class Graph extends React.Component {
   constructor(props) {
     super(props);
 
-    const sourceBlocks = props.nodes
-      .filter((n) => n.isSource)
+    const sourceBlocks = props.nodes.filter((n) => n.isSource);
 
     /*
      * Graphs are only responsible for rendering and grouping source nodes

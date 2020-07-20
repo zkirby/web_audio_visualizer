@@ -6,6 +6,9 @@ Todo:
 
 Next:
 
-- [] Allow sound to travel through the nodes
+- [] Nodal editing
+- [] Allow for nodes to be moved
+- [] Reuse of nodes
+- [x] Allow sound to travel through the nodes
 - [x] Figure out how to add nodes
 - [x] Need to convert graphs and nodes into react components.
