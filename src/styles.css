@@ -61,15 +61,14 @@
 }
 
 /* ------------------------- */
-.destination, .source {
+.destination, .source, .filter {
   position: relative;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
-.destination > div,
-.source > div {
+.node-text {
   font-size: 16px;
   font-weight: bold;
   position: relative;
@@ -86,19 +85,34 @@
 	border-top: 85px solid #555;
 }
 
+.filter {
+  border-radius: 100%;
+}
+
 .speaker {
   background: grey;
 }
 
-.source {
+.source, .filter {
   height: 100px;
   width: 100px;
 }
 
+.constant-source {
+  background: blue;
+}
+
+.gain {
+  background: green;
+}
+
+/* Oscillator */
 .oscillator {
   background: rebeccapurple;
 }
 
-.constant-source {
-  background: blue;
+.oscillator .options {
+  position: relative;
+    text-align: center;
+    top: 50px;
 }

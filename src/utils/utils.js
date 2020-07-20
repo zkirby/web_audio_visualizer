@@ -1,6 +1,7 @@
 import Oscillator from "../components/Sources/Oscillator";
 import ConstantSource from "../components/Sources/ConstantSource";
 import Speakers from "../components/Destinations/Speakers";
+import Gain from "../components/Filters/Gain";
 
 export const nodeTypes = {
   Sources: {
@@ -9,6 +10,9 @@ export const nodeTypes = {
   },
   Destinations: {
     Speakers,
+  },
+  Filters: {
+    Gain,
   },
 };
 

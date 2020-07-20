@@ -10,6 +10,7 @@ const defaultState = {
   selectedNodeRootType: undefined,
   proposedNode: undefined, // The node of the current graph to try merging
 };
+let graphNum = 0;
 export default class Platform extends React.Component {
   state = defaultState;
 
@@ -24,7 +25,7 @@ export default class Platform extends React.Component {
       return {
         activeGraphs: {
           ...activeGraphs,
-          [key]: [new Node(key, selectedNodeRootType)],
+          [this.getGraphKey(key)]: [new Node(key, selectedNodeRootType)],
         },
       };
     });
@@ -44,9 +45,13 @@ export default class Platform extends React.Component {
     this.setState(defaultState);
   };
 
+  getGraphKey = (key) => {
+    return `${key.split('-')[0]}-${++graphNum}`;
+  }
+
   removeNode = (rootKey, nodeKey) => {
     this.setState(({ activeGraphs }) => {
-      const newGraphs = { ...activeGraphs }
+      const newGraphs = { ...activeGraphs };
 
       // Remove graph
       const g = newGraphs[rootKey];
@@ -58,26 +63,29 @@ export default class Platform extends React.Component {
       g.splice(nI, 1);
 
       // Unlink nodes
-      g.map(n => n.unLink(nodeKey))
+      g.map((n) => n.unLink(nodeKey));
 
       // Rebuild graphs from node lists
       const graphs = {};
-      n.links.map(l => {
-        graphs[l] = [];
+      n.links.map((l) => {
+        const n = [];
         const s = new Set();
         let q = [l];
         while (q.length) {
           const coords = q.pop();
-          const newNode = g.find(n => n.coords === coords)
+          const newNode = g.find((n) => n.coords === coords);
           if (!s.has(coords)) {
             s.add(coords);
-            graphs[l].push(newNode);
+            n.push(newNode);
             q = [...q, ...newNode.links];
           }
         }
-      })
+        graphs[this.getGraphKey(l)] = n;
+      });
 
-      return { activeGraphs: {...graphs, ...newGraphs} };
+      console.log(graphs);
+
+      return { activeGraphs: { ...graphs, ...newGraphs } };
     });
   };
 
@@ -88,12 +96,13 @@ export default class Platform extends React.Component {
     // Update nodes
     const n1 = g1.find((n) => n.coords === keys1.nodeKey);
     const n2 = g2.find((n) => n.coords === keys2.nodeKey);
+
     // Enforce no loops.
-    if (!g1.find(n => n.coords === keys2.nodeKey)) {
+    if (!g1.find((n) => n.coords === keys2.nodeKey)) {
       n1.addLink(keys2.nodeKey);
       n2.addLink(keys1.nodeKey);
     } else {
-      throw new Error('Linking these nodes would cause a loop')
+      throw new Error("Linking these nodes would cause a loop");
     }
 
     this.setState(({ activeGraphs }) => {
@@ -102,7 +111,7 @@ export default class Platform extends React.Component {
       delete newGraphs[keys2.rootKey];
 
       return {
-        activeGraphs: { ...newGraphs, [keys1.rootKey]: [...g1, ...g2] },
+        activeGraphs: { ...newGraphs, [this.getGraphKey(keys1.rootKey)]: [...g1, ...g2] },
       };
     });
   };
@@ -137,7 +146,7 @@ export default class Platform extends React.Component {
         {Object.entries(this.state.activeGraphs).map(([key, nodes]) => (
           <Graph
             key={key}
-            rootKey={key}
+            graphKey={key}
             nodes={nodes}
             selectNode={this.setProposedNode}
             removeNode={this.removeNode}

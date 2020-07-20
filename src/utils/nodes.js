@@ -12,12 +12,12 @@ export default class Node {
     this.nodeType = nodeType;
     this.links = [];
   }
-  
+
   addLink(nodeCoords) {
     if (this.links.length < this.maxLinks) {
       this.links.push(nodeCoords);
     } else {
-      throw new Error('This node is already at max links');
+      throw new Error("This node is already at max links");
     }
   }
 

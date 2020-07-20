@@ -1,39 +1,44 @@
 import React from "react";
 import Node from "./Node";
-import Link from "./Link";
-import { noProp } from "../utils/utils.js";
 
 export default class Graph extends React.Component {
   constructor(props) {
     super(props);
 
-    this.key = props.rootKey;
     this.state = {
-      sourceBlocks: props.nodes.filter((n) => n.isSource),
+      sourceBlocks: props.nodes
+        .filter((n) => n.isSource)
+        .map((node) => ({
+          node,
+        })),
     };
+  }
+
+  getRootNodes() {
+    /*
+     * Graphs are only responsible for rendering and grouping source nodes
+     * and only need to render 'all nodes' if there are no source nodes (i.e. no audio contexts)
+     */
+    if (this.state.sourceBlocks.length) {
+      return this.state.sourceBlocks.map(({ node }) => node);
+    } else {
+      return this.props.nodes;
+    }
   }
 
   render() {
     const { selectedNodeKey, nodes, selectNode, removeNode } = this.props;
     return (
       <div>
-        {nodes.flatMap((node) =>
-          node.links.map((outLink) => (
-            <Link
-              key={`${outLink}-${node.coords}`}
-              link1={outLink}
-              link2={node.coords}
-            />
-          ))
-        )}
-        {nodes.map((node) => (
+        {this.getRootNodes().map((node) => (
           <Node
             key={node.coords}
-            coords={node.coords}
-            NodeType={node.nodeType}
-            isSelected={selectedNodeKey === node.coords}
-            removeNode={noProp(() => removeNode(this.key, node.coords))}
-            selectNode={noProp(() => selectNode(this.key, node.coords))}
+            graphKey={this.props.graphKey}
+            node={node}
+            allNodes={nodes}
+            selectedNodeKey={selectedNodeKey}
+            removeNode={removeNode}
+            selectNode={selectNode}
           />
         ))}
       </div>
