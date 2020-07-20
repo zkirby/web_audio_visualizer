@@ -23,3 +23,8 @@ export const noProp = (fn) => (e) => {
 
 export const nodeIsSource = (nodeType) =>
   Object.keys(nodeTypes.Sources).includes(nodeType.name);
+
+export const fakeAudio = {
+  context: new Proxy({}, { get: () => () => fakeAudio }),
+  connect: () => {},
+}

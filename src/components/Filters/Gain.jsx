@@ -12,7 +12,7 @@ export default class Gain extends React.Component {
         this.props.updateParent(this.gainNode);
       }
     } catch {
-      throw new Error("Could not connect Oscillator");
+      throw new Error("Could not connect Gain");
     }
   }
 

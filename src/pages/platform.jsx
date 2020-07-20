@@ -46,8 +46,8 @@ export default class Platform extends React.Component {
   };
 
   getGraphKey = (key) => {
-    return `${key.split('-')[0]}-${++graphNum}`;
-  }
+    return `${key.split("-")[0]}-${++graphNum}`;
+  };
 
   removeNode = (rootKey, nodeKey) => {
     this.setState(({ activeGraphs }) => {
@@ -83,8 +83,6 @@ export default class Platform extends React.Component {
         graphs[this.getGraphKey(l)] = n;
       });
 
-      console.log(graphs);
-
       return { activeGraphs: { ...graphs, ...newGraphs } };
     });
   };
@@ -111,7 +109,10 @@ export default class Platform extends React.Component {
       delete newGraphs[keys2.rootKey];
 
       return {
-        activeGraphs: { ...newGraphs, [this.getGraphKey(keys1.rootKey)]: [...g1, ...g2] },
+        activeGraphs: {
+          ...newGraphs,
+          [this.getGraphKey(keys1.rootKey)]: [...g1, ...g2],
+        },
       };
     });
   };

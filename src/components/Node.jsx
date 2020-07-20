@@ -15,6 +15,7 @@ export default class Node extends React.Component {
   }
 
   updateParent = (parent) => {
+    console.log('updating parent', parent);
     this.setState({
       parent,
     });
@@ -39,9 +40,7 @@ export default class Node extends React.Component {
       allNodes.findIndex((n) => n.coords === this.key),
       1
     );
-    const childNodes = allNodes.filter((n) =>
-      node.links.includes(n.coords)
-    );
+    const childNodes = allNodes.filter((n) => node.links.includes(n.coords));
 
     return (
       <>
