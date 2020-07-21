@@ -5,7 +5,6 @@ export default class Error extends React.Component {
   state = defaultState;
 
   componentDidCatch(error) {
-    console.log("error", error);
     this.setState({ error });
     setTimeout(() => this.setState(defaultState), 500);
   }
@@ -13,7 +12,9 @@ export default class Error extends React.Component {
   render() {
     return (
       <div>
-        {this.state.error && <div>{this.state.error.message}</div>}
+        {this.state.error && (
+          <div className="error">{this.state.error.message}</div>
+        )}
         {this.props.children}
       </div>
     );

@@ -4,17 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { noProp } from "../utils/utils.js";
 
 export default class Node extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      parent: undefined,
-      editOpen: false,
-      editContent: <div></div>,
-    };
-    this.key = this.props.node.coords;
-    this.type = this.props.node.nodeType;
-  }
+  state = {
+    parent: undefined,
+    editOpen: false,
+    moveLeft: undefined,
+    moveTop: undefined,
+  };
 
   toggleEdit = () => {
     this.setState(({ editOpen }) => ({ editOpen: !editOpen }));
@@ -22,6 +17,28 @@ export default class Node extends React.Component {
 
   updateParent = (parent) => {
     this.setState({ parent });
+  };
+
+  updateMoves = ({ pageY, pageX }) => {
+    this.setState({ moveLeft: pageX, moveTop: pageY });
+  };
+
+  initiateMove = ({ pageY, pageX }) => {
+    document.addEventListener("mousemove", this.updateMoves.bind(this));
+
+    // This is so the node will jump right to the mouse without
+    // the first mousemove event
+    this.props.node.updateCoords(pageY, pageX);
+    this.setState({ moveLeft: pageY, moveTop: pageX });
+  };
+
+  stopMove = () => {
+    const { moveLeft, moveTop } = this.state;
+    if (moveLeft || moveTop) {
+      document.removeEventListener("mousemove", this.updateMoves);
+      this.props.node.updateCoords(moveTop, moveLeft);
+      this.setState({ moveLeft: undefined, moveTop: undefined });
+    }
   };
 
   render() {
@@ -34,39 +51,50 @@ export default class Node extends React.Component {
       parent,
       node,
     } = this.props;
-    const [top, left] = this.key.split(",");
+    const { moveLeft, moveTop } = this.state;
+    const [top, left] = node.coords.split(",");
 
     // recalculate the children and new all nodes, there is a possibility this changed
     // if a node was just added to the parent graph
     const newAllNodes = [...allNodes];
     newAllNodes.splice(
-      allNodes.findIndex((n) => n.coords === this.key),
+      allNodes.findIndex((n) => n === node),
       1
     );
-    const childNodes = allNodes.filter((n) => node.links.includes(n.coords));
-  
+    const childNodes = allNodes.filter((n) => node.isLinked(n));
+
     return (
-      <>
+      <div onClick={noProp(() => this.stopMove())}>
         {/* Node */}
         <div
-          onClick={noProp(() => node.canAddLink() && selectNode(graphKey, this.key))}
-          style={{ left: `${left}px`, top: `${top}px` }}
+          onClick={() => node.canAddLink() && selectNode(graphKey, node)}
+          style={{ left: `${moveLeft || left}px`, top: `${moveTop || top}px` }}
           className={`node ${
-            selectedNodeKey === this.key ? "selected-node" : ""
-          } ${node.canAddLink() ? '' : 'max-links'}`}
+            selectedNodeKey === node ? "selected-node" : ""
+          } ${node.canAddLink() ? "" : "max-links"}`}
         >
           <div className="node-overlay">
-            <div
-              onClick={noProp(() => removeNode(graphKey, this.key))}
-              className="close"
-            >
-              <FontAwesomeIcon icon="times-circle" />
+            <div className="node-overlay-top">
+              <div
+                onClick={noProp(() => removeNode(graphKey, node))}
+                className="close"
+              >
+                <FontAwesomeIcon icon="times-circle" />
+              </div>
+              <div className="edit" onClick={noProp(() => this.toggleEdit())}>
+                <FontAwesomeIcon icon="pen" />
+              </div>
             </div>
-            <div className="edit" onClick={noProp(() => this.toggleEdit())}>
-              <FontAwesomeIcon icon="pen" />
+            <div className="node-overlay-bottom">
+              <div
+                className="move"
+                onClick={noProp((e) => this.initiateMove(e))}
+              >
+                <FontAwesomeIcon icon="arrows-alt" />
+              </div>
             </div>
           </div>
-          <this.type
+          <node.nodeType
             updateParent={this.updateParent}
             editOpen={this.state.editOpen}
             toggleEdit={this.toggleEdit}
@@ -77,11 +105,11 @@ export default class Node extends React.Component {
         {/* Children */}
         <div>
           {this.state.parent &&
-            this.props.node.links.map((outLink) => (
+            node.linkCoords().map((outLink) => (
               <Link
-                key={`${outLink}-${this.key}`}
+                key={`${outLink}-${node.coords}`}
                 link1={outLink}
-                link2={this.key}
+                link2={node.coords}
               />
             ))}
           {this.state.parent &&
@@ -98,7 +126,7 @@ export default class Node extends React.Component {
               />
             ))}
         </div>
-      </>
+      </div>
     );
   }
 }

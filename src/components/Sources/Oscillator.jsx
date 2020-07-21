@@ -16,7 +16,6 @@ export default class Oscillator extends React.Component {
       detune: props.node.options.detune || 100,
       type: props.node.options.type || "sine",
     };
-    this.node = props.node;
   }
 
   componentDidMount() {
@@ -60,7 +59,7 @@ export default class Oscillator extends React.Component {
     const value = event.target.value;
 
     this.updateOscillator(value, type);
-    this.node.options[type] = value;
+    this.props.node.options[type] = value;
     this.setState({ [type]: value });
   }
 

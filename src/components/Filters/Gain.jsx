@@ -37,11 +37,11 @@ export default class Gain extends React.Component {
       this.gainNode.gain.value = value;
     }
     this.props.node.options.gain = value;
-  }
+  };
 
   render() {
     return (
-      <div className="filter gain">
+      <div className="filter single-input gain">
         <div className="node-text">Gain</div>
         <input
           type="number"

@@ -7,6 +7,8 @@
   position: absolute;
   top: 30px;
   color: red;
+  text-align: center;
+  border: 1px solid black;
 }
 
 .link {
@@ -69,21 +71,31 @@
   opacity: 1;
 }
 
+/* Node Overlay */
 .node-overlay {
   position: absolute;
   display: flex;
+  flex-direction: column;
+  height: 100%;
   opacity: 0;
   width: 100%;
   justify-content: space-between;
 }
 
-.node-overlay > .close {
+.node-overlay-top, .node-overlay-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.node-overlay-top > .close {
   color: red;
 }
 
+.node-overlay-bottom > .move {
+  color: blue;
+}
 
-
-/* ------------------------- */
+/* Nodes */
 .destination, .source, .filter {
   position: relative;
   left: 50%;
@@ -108,10 +120,6 @@
 	border-top: 85px solid #555;
 }
 
-.filter {
-  border-radius: 100%;
-}
-
 .speaker {
   background: grey;
 }
@@ -121,20 +129,31 @@
   width: 100px;
 }
 
-.constant-source {
-  background: blue;
-}
-
 
 /* Oscillator */
 .oscillator {
   background: rebeccapurple;
 }
 
-.oscillator .options {
+.source .options {
   position: relative;
-    text-align: center;
-    top: 50px;
+  text-align: center;
+  top: 50px;
+}
+
+
+/* --------------- */
+/* Filters */
+/* --------------- */
+.single-input > input {
+  width: 30px;
+  position: relative;
+  top: 45px;
+  left: 32px;
+}
+
+.filter {
+  border-radius: 100%;
 }
 
 /* Gain */
@@ -142,9 +161,16 @@
   background: green;
 }
 
-.gain > input {
-  width: 30px;
-    position: relative;
-    top: 45px;
-    left: 32px;
+/* Delay */
+.delay {
+ background: yellow;
+}
+
+/* Constant Source */
+.constant-source {
+  background: mediumaquamarine;
+}
+
+.constant-source .options {
+  top: 35px;
 }

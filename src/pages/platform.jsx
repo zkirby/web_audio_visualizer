@@ -11,6 +11,7 @@ const defaultState = {
   proposedNode: undefined, // The node of the current graph to try merging
 };
 let graphNum = 0;
+let nodeNum = 0;
 export default class Platform extends React.Component {
   state = defaultState;
 
@@ -21,11 +22,11 @@ export default class Platform extends React.Component {
         return;
       }
 
-      const key = `${pageY}, ${pageX}`;
+      const coords = `${pageY}, ${pageX}`;
       return {
         activeGraphs: {
           ...activeGraphs,
-          [this.getGraphKey(key)]: [new Node(key, selectedNodeRootType)],
+          [this.getGraphKey(coords)]: [new Node(coords, selectedNodeRootType, nodeNum++)],
         },
       };
     });
@@ -49,7 +50,7 @@ export default class Platform extends React.Component {
     return `${key.split("-")[0]}-${++graphNum}`;
   };
 
-  removeNode = (rootKey, nodeKey) => {
+  removeNode = (rootKey, node) => {
     this.setState(({ activeGraphs }) => {
       const newGraphs = { ...activeGraphs };
 
@@ -58,71 +59,71 @@ export default class Platform extends React.Component {
       delete newGraphs[rootKey];
 
       // Remove Node
-      const nI = g.findIndex((n) => n.coords === nodeKey);
-      const n = g[nI];
-      g.splice(nI, 1);
+      g.splice(g.indexOf(node), 1);
 
-      // Unlink nodes
-      g.map((n) => n.unLink(nodeKey));
+      // Unlink node
+      node.unLinkAll();
 
       // Rebuild graphs from node lists
       const graphs = {};
-      n.links.map((l) => {
+      node._links.map((l) => {
         const n = [];
         const s = new Set();
         let q = [l];
         while (q.length) {
-          const coords = q.pop();
-          const newNode = g.find((n) => n.coords === coords);
-          if (!s.has(coords)) {
-            s.add(coords);
+          const newNode = q.pop();
+          if (!s.has(newNode)) {
+            s.add(newNode);
             n.push(newNode);
-            q = [...q, ...newNode.links];
+            q = [...q, ...newNode._links];
           }
         }
-        graphs[this.getGraphKey(l)] = n;
+        graphs[this.getGraphKey(l.coords)] = n;
       });
 
       return { activeGraphs: { ...graphs, ...newGraphs } };
     });
   };
 
-  mergeGraphs = (keys1, keys2) => {
-    const g1 = this.state.activeGraphs[keys1.rootKey];
-    const g2 = this.state.activeGraphs[keys2.rootKey];
+  mergeGraphs = (p1, p2) => {
+    const g1 = this.state.activeGraphs[p1.rootKey];
+    const g2 = this.state.activeGraphs[p2.rootKey];
 
     // Update nodes
-    const n1 = g1.find((n) => n.coords === keys1.nodeKey);
-    const n2 = g2.find((n) => n.coords === keys2.nodeKey);
+    const n1 = p1.node
+    const n2 = p2.node
 
     // Enforce no loops.
-    if (!g1.find((n) => n.coords === keys2.nodeKey)) {
-      n1.addLink(keys2.nodeKey);
-      n2.addLink(keys1.nodeKey);
+    if (!g1.includes(n2)) {
+      n1.addLink(n2);
+      n2.addLink(n1);
     } else {
       throw new Error("Linking these nodes would cause a loop");
     }
 
     this.setState(({ activeGraphs }) => {
       const newGraphs = { ...activeGraphs };
-      delete newGraphs[keys1.rootKey];
-      delete newGraphs[keys2.rootKey];
+      delete newGraphs[p1.rootKey];
+      delete newGraphs[p2.rootKey];
 
       return {
         activeGraphs: {
           ...newGraphs,
-          [this.getGraphKey(keys1.rootKey)]: [...g1, ...g2],
+          [this.getGraphKey(p1.rootKey)]: [...g1, ...g2],
         },
       };
     });
   };
 
-  setProposedNode = (rootKey, nodeKey) => {
+  setProposedNode = (rootKey, node) => {
     if (this.state.proposedNode) {
-      this.mergeGraphs(this.state.proposedNode, { rootKey, nodeKey });
+      if (this.state.proposedNode.node !== node) {
+        this.mergeGraphs(this.state.proposedNode, { rootKey, node });
+      }
+      // Unselect the node
       this.setState({ proposedNode: undefined });
     } else {
-      this.setState({ proposedNode: { rootKey, nodeKey } });
+      this.setState({ proposedNode: { rootKey, node } });
     }
   };
 
@@ -151,7 +152,7 @@ export default class Platform extends React.Component {
             nodes={nodes}
             selectNode={this.setProposedNode}
             removeNode={this.removeNode}
-            selectedNodeKey={this.state.proposedNode?.nodeKey}
+            selectedNodeKey={this.state.proposedNode?.node}
           />
         ))}
       </div>

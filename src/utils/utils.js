@@ -2,6 +2,7 @@ import Oscillator from "../components/Sources/Oscillator";
 import ConstantSource from "../components/Sources/ConstantSource";
 import Speakers from "../components/Destinations/Speakers";
 import Gain from "../components/Filters/Gain";
+import Delay from "../components/Filters/Delay";
 
 export const nodeTypes = {
   Sources: {
@@ -13,11 +14,12 @@ export const nodeTypes = {
   },
   Filters: {
     Gain,
+    Delay,
   },
 };
 
 export const noProp = (fn) => (e) => {
-  fn && fn();
+  fn && fn(e);
   e.stopPropagation();
 };
 
