@@ -29,8 +29,10 @@ export default class Node extends React.Component {
   };
 
   updateMoves = ({ pageY, pageX }) => {
-    this.state.moveInProgress &&
+    if (this.state.moveInProgress) {
       this.setState({ moveLeft: pageX, moveTop: pageY });
+      this.props.node.updateCoords(pageY, pageX); 
+    }
   };
 
   initiateMove = ({ pageY, pageX }) => {
@@ -43,7 +45,6 @@ export default class Node extends React.Component {
   stopMove = () => {
     const { moveLeft, moveTop } = this.state;
     if (moveLeft || moveTop) {
-      this.props.node.updateCoords(moveTop, moveLeft);
       this.setState({
         moveInProgress: false,
         moveLeft: undefined,
@@ -73,6 +74,7 @@ export default class Node extends React.Component {
       1
     );
     const childNodes = allNodes.filter((n) => node.isLinked(n));
+    const parentLinks = node.getParentLinks(childNodes);
 
     return (
       <div onClick={noProp(() => this.stopMove())}>
@@ -119,13 +121,12 @@ export default class Node extends React.Component {
         {/* Children */}
         <div>
           {this.state.parent &&
-            node
-              .linkCoords()
+            parentLinks
               .map((outLink) => (
                 <Link
-                  key={`${outLink}-${node.coords}`}
+                  key={`${outLink.coords}-${node.coords}`}
                   link1={outLink}
-                  link2={node.coords}
+                  link2={node}
                 />
               ))}
           {this.state.parent &&

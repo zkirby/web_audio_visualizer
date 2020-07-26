@@ -30,6 +30,10 @@ export default class Node {
     return this._links.map((link) => link.coords);
   }
 
+  getParentLinks(childNodes) {
+    return this._links.filter((link) => !childNodes.includes(link));
+  }
+
   isLinked(node) {
     return this._links.includes(node);
   }
