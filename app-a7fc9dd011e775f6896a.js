@@ -1,5 +1,5 @@
 (window.webpackJsonp = window.webpackJsonp || []).push([
-  [1],
+  [2],
   {
     "+VNo": function (t, e) {
       t.exports = "\t\n\v\f\r   ᠎             　\u2028\u2029\ufeff";
@@ -5472,15 +5472,18 @@
     pCP8: function (t, e, n) {
       e.components = {
         "component---src-pages-error-jsx": function () {
-          return n.e(3).then(n.bind(null, "GybN"));
+          return n.e(4).then(n.bind(null, "GybN"));
+        },
+        "component---src-pages-home-jsx": function () {
+          return Promise.all([n.e(0), n.e(5)]).then(n.bind(null, "KWJC"));
         },
         "component---src-pages-index-js": function () {
-          return Promise.all([n.e(6), n.e(2), n.e(0), n.e(4)]).then(
+          return Promise.all([n.e(8), n.e(3), n.e(0), n.e(1), n.e(6)]).then(
             n.bind(null, "RXBc")
           );
         },
         "component---src-pages-platform-jsx": function () {
-          return n.e(0).then(n.bind(null, "hCUD"));
+          return Promise.all([n.e(0), n.e(1)]).then(n.bind(null, "hCUD"));
         },
       };
     },
@@ -6103,6 +6106,6 @@
       );
     },
   },
-  [["UxWs", 7, 5]],
+  [["UxWs", 9, 7]],
 ]);
-//# sourceMappingURL=app-fc656ee04cd58830d3be.js.map
+//# sourceMappingURL=app-a7fc9dd011e775f6896a.js.map

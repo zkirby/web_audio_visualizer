@@ -1,5 +1,5 @@
 (window.webpackJsonp = window.webpackJsonp || []).push([
-  [0],
+  [1],
   {
     "+ar0": function (t, e, n) {
       var r = n("P8UN");
@@ -264,7 +264,7 @@
           x.___FONT_AWESOME___.hooks || (x.___FONT_AWESOME___.hooks = {}),
           x.___FONT_AWESOME___.shims || (x.___FONT_AWESOME___.shims = []);
         var N = x.___FONT_AWESOME___,
-          T = [];
+          S = [];
         g &&
           ((y.documentElement.doScroll ? /^loaded|^c/ : /^loaded|^i|^c/).test(
             y.readyState
@@ -272,26 +272,26 @@
             y.addEventListener("DOMContentLoaded", function t() {
               y.removeEventListener("DOMContentLoaded", t),
                 1,
-                T.map(function (t) {
+                S.map(function (t) {
                   return t();
                 });
             }));
-        var A,
+        var T,
           C = function () {},
-          S =
+          A =
             void 0 !== t &&
             void 0 !== t.process &&
             "function" == typeof t.process.emit,
-          j = void 0 === r ? setTimeout : r,
-          P = [];
+          P = void 0 === r ? setTimeout : r,
+          j = [];
         function I() {
-          for (var t = 0; t < P.length; t++) P[t][0](P[t][1]);
-          (P = []), (A = !1);
+          for (var t = 0; t < j.length; t++) j[t][0](j[t][1]);
+          (j = []), (T = !1);
         }
         function M(t, e) {
-          P.push([t, e]), A || ((A = !0), j(I, 0));
+          j.push([t, e]), T || ((T = !0), P(I, 0));
         }
-        function z(t) {
+        function L(t) {
           var e = t.owner,
             n = e._state,
             r = e._data,
@@ -302,13 +302,13 @@
             try {
               r = o(r);
             } catch (xt) {
-              G(a, xt);
+              R(a, xt);
             }
           }
-          L(a, r) ||
-            ("fulfilled" === n && D(a, r), "rejected" === n && G(a, r));
+          z(a, r) ||
+            ("fulfilled" === n && D(a, r), "rejected" === n && R(a, r));
         }
-        function L(t, e) {
+        function z(t, e) {
           var n;
           try {
             if (t === e)
@@ -322,45 +322,45 @@
                   r.call(
                     e,
                     function (r) {
-                      n || ((n = !0), e === r ? R(t, r) : D(t, r));
+                      n || ((n = !0), e === r ? G(t, r) : D(t, r));
                     },
                     function (e) {
-                      n || ((n = !0), G(t, e));
+                      n || ((n = !0), R(t, e));
                     }
                   ),
                   !0
                 );
             }
           } catch (xt) {
-            return n || G(t, xt), !0;
+            return n || R(t, xt), !0;
           }
           return !1;
         }
         function D(t, e) {
-          (t !== e && L(t, e)) || R(t, e);
-        }
-        function R(t, e) {
-          "pending" === t._state &&
-            ((t._state = "settled"), (t._data = e), M(U, t));
+          (t !== e && z(t, e)) || G(t, e);
         }
         function G(t, e) {
           "pending" === t._state &&
-            ((t._state = "settled"), (t._data = e), M(F, t));
+            ((t._state = "settled"), (t._data = e), M(U, t));
+        }
+        function R(t, e) {
+          "pending" === t._state &&
+            ((t._state = "settled"), (t._data = e), M(W, t));
         }
         function K(t) {
-          t._then = t._then.forEach(z);
+          t._then = t._then.forEach(L);
         }
         function U(t) {
           (t._state = "fulfilled"), K(t);
         }
-        function F(e) {
+        function W(e) {
           (e._state = "rejected"),
             K(e),
             !e._handled &&
-              S &&
+              A &&
               t.process.emit("unhandledRejection", e._data, e);
         }
-        function W(e) {
+        function F(e) {
           t.process.emit("rejectionHandled", e);
         }
         function Y(t) {
@@ -373,7 +373,7 @@
           (this._then = []),
             (function (t, e) {
               function n(t) {
-                G(e, t);
+                R(e, t);
               }
               try {
                 t(function (t) {
@@ -401,9 +401,9 @@
               (!e && !t) ||
                 this._handled ||
                 ((this._handled = !0),
-                "rejected" === this._state && S && M(W, this)),
+                "rejected" === this._state && A && M(F, this)),
               "fulfilled" === this._state || "rejected" === this._state
-                ? M(z, n)
+                ? M(L, n)
                 : this._then.push(n),
               n.then
             );
@@ -453,8 +453,8 @@
               n(t);
             });
           });
-        var X = { size: 16, x: 0, y: 0, rotate: 0, flipX: !1, flipY: !1 };
-        function q(t) {
+        var V = { size: 16, x: 0, y: 0, rotate: 0, flipX: !1, flipY: !1 };
+        function X(t) {
           if (t && g) {
             var e = y.createElement("style");
             e.setAttribute("type", "text/css"), (e.innerHTML = t);
@@ -470,14 +470,14 @@
             return y.head.insertBefore(e, r), t;
           }
         }
-        function H() {
+        function q() {
           for (var t = 12, e = ""; t-- > 0; )
             e += "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"[
               (62 * Math.random()) | 0
             ];
           return e;
         }
-        function V(t) {
+        function H(t) {
           return ""
             .concat(t)
             .replace(/&/g, "&amp;")
@@ -493,10 +493,10 @@
         }
         function J(t) {
           return (
-            t.size !== X.size ||
-            t.x !== X.x ||
-            t.y !== X.y ||
-            t.rotate !== X.rotate ||
+            t.size !== V.size ||
+            t.x !== V.x ||
+            t.y !== V.y ||
+            t.rotate !== V.rotate ||
             t.flipX ||
             t.flipY
           );
@@ -574,7 +574,7 @@
                 attributes: {
                   id:
                     w.attributes["aria-labelledby"] ||
-                    "title-".concat(f || H()),
+                    "title-".concat(f || q()),
                 },
                 children: [l],
               });
@@ -628,8 +628,8 @@
                         attributes: s({}, d.outer),
                         children: [y],
                       },
-                      g = "mask-".concat(i || H()),
-                      b = "clip-".concat(i || H()),
+                      g = "mask-".concat(i || q()),
+                      b = "clip-".concat(i || q()),
                       w = {
                         tag: "mask",
                         attributes: s({}, Z, {
@@ -848,14 +848,14 @@
             o = t.children,
             a = void 0 === o ? [] : o;
           return "string" == typeof t
-            ? V(t)
+            ? H(t)
             : "<"
                 .concat(e, " ")
                 .concat(
                   (function (t) {
                     return Object.keys(t || {})
                       .reduce(function (e, n) {
-                        return e + "".concat(n, '="').concat(V(t[n]), '" ');
+                        return e + "".concat(n, '="').concat(H(t[n]), '" ');
                       }, "")
                       .trim();
                   })(r),
@@ -993,7 +993,7 @@
           return r;
         }
         function vt() {
-          _.autoAddCss && !Ot && (q(yt()), (Ot = !0));
+          _.autoAddCss && !Ot && (X(yt()), (Ot = !0));
         }
         function gt(t, e) {
           return (
@@ -1095,7 +1095,7 @@
                     ? arguments[1]
                     : {},
                 n = e.transform,
-                r = void 0 === n ? X : n,
+                r = void 0 === n ? V : n,
                 o = e.symbol,
                 a = void 0 !== o && o,
                 i = e.mask,
@@ -1123,7 +1123,7 @@
                       (p
                         ? (g["aria-labelledby"] = ""
                             .concat(_.replacementClass, "-title-")
-                            .concat(m || H()))
+                            .concat(m || q()))
                         : ((g["aria-hidden"] = "true"),
                           (g.focusable = "false"))),
                     tt({
@@ -1135,7 +1135,7 @@
                       },
                       prefix: k,
                       iconName: O,
-                      transform: s({}, X, r),
+                      transform: s({}, V, r),
                       symbol: a,
                       title: p,
                       maskId: u,
@@ -1275,16 +1275,6 @@
           return 0;
         });
     },
-    C9fy: function (t, e, n) {
-      var r = Date.prototype,
-        o = r.toString,
-        a = r.getTime;
-      new Date(NaN) + "" != "Invalid Date" &&
-        n("IYdN")(r, "toString", function () {
-          var t = a.call(this);
-          return t == t ? o.call(this) : "Invalid Date";
-        });
-    },
     HXzo: function (t, e, n) {
       "use strict";
       n("EU/P")("trim", function (t) {
@@ -1301,10 +1291,6 @@
           return o(t);
         },
       });
-    },
-    R48M: function (t, e, n) {
-      var r = n("P8UN");
-      r(r.S + r.F * !n("QPJK"), "Object", { defineProperty: n("rjfK").f });
     },
     URgk: function (t, e, n) {
       (function (t) {
@@ -1505,12 +1491,13 @@
       "use strict";
       n.r(e),
         n.d(e, "default", function () {
-          return L;
+          return X;
         });
       n("q8oJ"),
         n("cFtU"),
         n("m210"),
         n("4DPX"),
+        n("v9g0"),
         n("PZd/"),
         n("gu/5"),
         n("eoYm"),
@@ -1725,7 +1712,7 @@
       var v = !1;
       try {
         v = !0;
-      } catch (D) {}
+      } catch (q) {}
       function g(t) {
         return null === t
           ? null
@@ -1914,518 +1901,561 @@
           e.apply(void 0, [n.tag, p({}, a.attrs, {}, c)].concat(m(o)))
         );
       }.bind(null, o.a.createElement);
-      var O = {
-          Sources: {
-            Oscillator: (function (t) {
-              var e, n;
-              function r(e) {
-                var n;
-                return (
-                  ((n = t.call(this, e) || this).audio = {}),
-                  (n.oscillator = {}),
-                  (n.gainNode = {}),
-                  (n.play = function () {
-                    n.state.isAlive
-                      ? n.gainNode.gain.setValueAtTime(1, n.audio.currentTime)
-                      : n.oscillator.start(),
-                      n.setState({ playing: !0, isAlive: !0 });
-                  }),
-                  (n.stop = function () {
-                    n.gainNode.gain.setValueAtTime(0, n.audio.currentTime),
-                      n.setState({ playing: !1 });
-                  }),
-                  (n.state = {
-                    playing: !1,
-                    isAlive: !1,
-                    frequency: e.node.options.frequency || 440,
-                    detune: e.node.options.detune || 100,
-                    type: e.node.options.type || "sine",
-                  }),
-                  n
+      var O = (function (t) {
+        var e, n;
+        function r(e) {
+          var n;
+          return (
+            ((n = t.call(this, e) || this).audio = {}),
+            (n.oscillator = {}),
+            (n.gainNode = {}),
+            (n.play = function () {
+              n.state.isAlive
+                ? n.gainNode.gain.setValueAtTime(1, n.audio.currentTime)
+                : n.oscillator.start(),
+                n.setState({ playing: !0, isAlive: !0 });
+            }),
+            (n.stop = function () {
+              n.gainNode.gain.setValueAtTime(0, n.audio.currentTime),
+                n.setState({ playing: !1 });
+            }),
+            (n.state = {
+              playing: !1,
+              isAlive: !1,
+              frequency: e.node.options.frequency || 440,
+              detune: e.node.options.detune || 100,
+              type: e.node.options.type || "sine",
+            }),
+            n
+          );
+        }
+        (n = t),
+          ((e = r).prototype = Object.create(n.prototype)),
+          (e.prototype.constructor = e),
+          (e.__proto__ = n);
+        var a = r.prototype;
+        return (
+          (a.componentDidMount = function () {
+            try {
+              (this.audio = new (window.AudioContext ||
+                window.webkitAudioContext)()),
+                (this.oscillator = this.audio.createOscillator()),
+                this.updateOscillator(this.state.frequency, "frequency"),
+                this.updateOscillator(this.state.detune, "detune"),
+                this.updateOscillator(this.state.type, "type"),
+                (this.gainNode = this.audio.createGain()),
+                this.oscillator.connect(this.gainNode),
+                this.props.updateParent(this.gainNode);
+            } catch (t) {
+              throw new Error("Could not connect Oscillator");
+            }
+          }),
+          (a.componentWillUnmount = function () {
+            this.state.isAlive && this.oscillator.stop(), this.audio.close();
+          }),
+          (a.updateEditAttr = function (t, e) {
+            var n,
+              r = t.target.value;
+            this.updateOscillator(r, e),
+              (this.props.node.options[e] = r),
+              this.setState((((n = {})[e] = r), n));
+          }),
+          (a.updateOscillator = function (t, e) {
+            switch (e) {
+              case "frequency":
+                this.oscillator.frequency.setValueAtTime(
+                  t,
+                  this.audio.currentTime
                 );
-              }
-              (n = t),
-                ((e = r).prototype = Object.create(n.prototype)),
-                (e.prototype.constructor = e),
-                (e.__proto__ = n);
-              var a = r.prototype;
-              return (
-                (a.componentDidMount = function () {
-                  try {
-                    (this.audio = new (window.AudioContext ||
-                      window.webkitAudioContext)()),
-                      (this.oscillator = this.audio.createOscillator()),
-                      this.updateOscillator(this.state.frequency, "frequency"),
-                      this.updateOscillator(this.state.detune, "detune"),
-                      this.updateOscillator(this.state.type, "type"),
-                      (this.gainNode = this.audio.createGain()),
-                      this.oscillator.connect(this.gainNode),
-                      this.props.updateParent(this.gainNode);
-                  } catch (t) {
-                    throw new Error("Could not connect Oscillator");
-                  }
-                }),
-                (a.componentWillUnmount = function () {
-                  this.state.isAlive && this.oscillator.stop(),
-                    this.audio.close();
-                }),
-                (a.updateEditAttr = function (t, e) {
-                  var n,
-                    r = t.target.value;
-                  this.updateOscillator(r, e),
-                    (this.props.node.options[e] = r),
-                    this.setState((((n = {})[e] = r), n));
-                }),
-                (a.updateOscillator = function (t, e) {
-                  switch (e) {
-                    case "frequency":
-                      this.oscillator.frequency.setValueAtTime(
-                        t,
-                        this.audio.currentTime
-                      );
-                      break;
-                    case "detune":
-                      this.oscillator.detune.setValueAtTime(
-                        t,
-                        this.audio.currentTime
-                      );
-                      break;
-                    case "type":
-                      this.oscillator.type = t;
-                  }
-                }),
-                (a.render = function () {
-                  var t = this,
-                    e = this.state,
-                    n = e.frequency,
-                    r = e.type,
-                    a = e.detune;
-                  return o.a.createElement(
-                    o.a.Fragment,
-                    null,
-                    this.props.editOpen &&
-                      o.a.createElement(
-                        "div",
-                        { className: "node-edit-overlay" },
-                        o.a.createElement(
-                          "div",
-                          {
-                            className: "close",
-                            onClick: E(function () {
-                              return t.props.toggleEdit();
-                            }),
-                          },
-                          "X"
-                        ),
-                        o.a.createElement(
-                          "div",
-                          { onClick: E(function () {}) },
-                          o.a.createElement(
-                            "label",
-                            null,
-                            "frequency:",
-                            " ",
-                            o.a.createElement("input", {
-                              type: "number",
-                              value: n,
-                              onChange: function (e) {
-                                return t.updateEditAttr(e, "frequency");
-                              },
-                            })
-                          ),
-                          o.a.createElement(
-                            "label",
-                            null,
-                            "detune:",
-                            " ",
-                            o.a.createElement("input", {
-                              type: "number",
-                              value: a,
-                              onChange: function (e) {
-                                return t.updateEditAttr(e, "detune");
-                              },
-                            })
-                          ),
-                          o.a.createElement(
-                            "select",
-                            {
-                              value: r,
-                              onChange: function (e) {
-                                return t.updateEditAttr(e, "type");
-                              },
-                              name: "type",
-                            },
-                            o.a.createElement(
-                              "option",
-                              { value: "sine" },
-                              "Sine"
-                            ),
-                            o.a.createElement(
-                              "option",
-                              { value: "square" },
-                              "Square"
-                            ),
-                            o.a.createElement(
-                              "option",
-                              { value: "sawtooth" },
-                              "Sawtooth"
-                            ),
-                            o.a.createElement(
-                              "option",
-                              { value: "triangle" },
-                              "Triangle"
-                            )
-                          )
-                        )
-                      ),
+                break;
+              case "detune":
+                this.oscillator.detune.setValueAtTime(
+                  t,
+                  this.audio.currentTime
+                );
+                break;
+              case "type":
+                this.oscillator.type = t;
+            }
+          }),
+          (a.render = function () {
+            var t = this,
+              e = this.state,
+              n = e.frequency,
+              r = e.type,
+              a = e.detune;
+            return o.a.createElement(
+              o.a.Fragment,
+              null,
+              this.props.editOpen &&
+                o.a.createElement(
+                  "div",
+                  { className: "node-edit-overlay" },
+                  o.a.createElement(
+                    "div",
+                    {
+                      className: "close",
+                      onClick: A(function () {
+                        return t.props.toggleEdit();
+                      }),
+                    },
+                    "X"
+                  ),
+                  o.a.createElement(
+                    "div",
+                    { onClick: A(function () {}) },
                     o.a.createElement(
-                      "div",
-                      { className: "source oscillator" },
+                      "label",
+                      null,
+                      "frequency:",
+                      " ",
+                      o.a.createElement("input", {
+                        type: "number",
+                        value: n,
+                        onChange: function (e) {
+                          return t.updateEditAttr(e, "frequency");
+                        },
+                      })
+                    ),
+                    o.a.createElement(
+                      "label",
+                      null,
+                      "detune:",
+                      " ",
+                      o.a.createElement("input", {
+                        type: "number",
+                        value: a,
+                        onChange: function (e) {
+                          return t.updateEditAttr(e, "detune");
+                        },
+                      })
+                    ),
+                    o.a.createElement(
+                      "select",
+                      {
+                        value: r,
+                        onChange: function (e) {
+                          return t.updateEditAttr(e, "type");
+                        },
+                        name: "type",
+                      },
+                      o.a.createElement("option", { value: "sine" }, "Sine"),
                       o.a.createElement(
-                        "div",
-                        { className: "node-text" },
-                        "Oscillator"
+                        "option",
+                        { value: "square" },
+                        "Square"
                       ),
                       o.a.createElement(
-                        "div",
-                        { className: "options" },
-                        o.a.createElement(
-                          "button",
-                          {
-                            onClick: E(function () {
-                              return t.play();
-                            }),
-                            disabled: this.state.playing,
-                          },
-                          "play"
-                        ),
-                        o.a.createElement(
-                          "button",
-                          {
-                            onClick: E(function () {
-                              return t.stop();
-                            }),
-                            disabled: !this.state.playing,
-                          },
-                          "stop"
-                        )
+                        "option",
+                        { value: "sawtooth" },
+                        "Sawtooth"
+                      ),
+                      o.a.createElement(
+                        "option",
+                        { value: "triangle" },
+                        "Triangle"
                       )
                     )
-                  );
-                }),
-                r
-              );
-            })(o.a.Component),
-            ConstantSource: (function (t) {
-              var e, n;
-              function r(e) {
-                var n;
-                return (
-                  ((n = t.call(this, e) || this).audio = {}),
-                  (n.csource = {}),
-                  (n.gainNode = {}),
-                  (n.play = function () {
-                    n.state.isAlive
-                      ? n.gainNode.gain.setValueAtTime(1, n.audio.currentTime)
-                      : n.csource.start(),
-                      n.setState({ playing: !0, isAlive: !0 });
-                  }),
-                  (n.stop = function () {
-                    n.gainNode.gain.setValueAtTime(0, n.audio.currentTime),
-                      n.setState({ playing: !1 });
-                  }),
-                  (n.handleUpdateOffset = function (t) {
-                    var e = t.target.value;
-                    n.updateCSource(e), n.setState({ offset: e });
-                  }),
-                  (n.state = {
-                    playing: !1,
-                    isAlive: !1,
-                    offset: e.node.options.offset || 1,
-                  }),
-                  n
-                );
-              }
-              (n = t),
-                ((e = r).prototype = Object.create(n.prototype)),
-                (e.prototype.constructor = e),
-                (e.__proto__ = n);
-              var a = r.prototype;
-              return (
-                (a.componentDidMount = function () {
-                  try {
-                    (this.audio = new (window.AudioContext ||
-                      window.webkitAudioContext)()),
-                      (this.csource = this.audio.createConstantSource()),
-                      this.updateCSource(this.state.offset),
-                      (this.gainNode = this.audio.createGain()),
-                      this.csource.connect(this.gainNode),
-                      this.props.updateParent(this.gainNode);
-                  } catch (D) {
-                    throw (
-                      (console.log(D),
-                      new Error("Could not connect Oscillator"))
-                    );
-                  }
-                }),
-                (a.componentWillUnmount = function () {
-                  this.state.isAlive && this.csource.stop(), this.audio.close();
-                }),
-                (a.updateCSource = function (t) {
-                  (this.csource.offset.value = t),
-                    (this.props.node.options.offset = t);
-                }),
-                (a.render = function () {
-                  var t = this,
-                    e = this.state.offset;
-                  return o.a.createElement(
-                    o.a.Fragment,
-                    null,
-                    this.props.editOpen &&
-                      o.a.createElement(
-                        "div",
-                        { className: "node-edit-overlay" },
-                        o.a.createElement(
-                          "div",
-                          {
-                            className: "close",
-                            onClick: E(function () {
-                              return t.props.toggleEdit();
-                            }),
-                          },
-                          "X"
-                        ),
-                        o.a.createElement(
-                          "div",
-                          { onClick: E(function () {}) },
-                          o.a.createElement(
-                            "label",
-                            null,
-                            "offset:",
-                            " ",
-                            o.a.createElement("input", {
-                              type: "number",
-                              value: e,
-                              onChange: this.handleUpdateOffset,
-                            })
-                          )
-                        )
-                      ),
+                  )
+                ),
+              o.a.createElement(
+                "div",
+                { className: "source oscillator" },
+                o.a.createElement(
+                  "div",
+                  { className: "node-text" },
+                  "Oscillator"
+                ),
+                o.a.createElement(
+                  "div",
+                  { className: "options" },
+                  o.a.createElement(
+                    "button",
+                    {
+                      onClick: A(function () {
+                        return t.play();
+                      }),
+                      disabled: this.state.playing,
+                    },
+                    "play"
+                  ),
+                  o.a.createElement(
+                    "button",
+                    {
+                      onClick: A(function () {
+                        return t.stop();
+                      }),
+                      disabled: !this.state.playing,
+                    },
+                    "stop"
+                  )
+                )
+              )
+            );
+          }),
+          r
+        );
+      })(o.a.Component);
+      var E = (function (t) {
+        var e, n;
+        function r(e) {
+          var n;
+          return (
+            ((n = t.call(this, e) || this).audio = {}),
+            (n.csource = {}),
+            (n.gainNode = {}),
+            (n.play = function () {
+              n.state.isAlive
+                ? n.gainNode.gain.setValueAtTime(1, n.audio.currentTime)
+                : n.csource.start(),
+                n.setState({ playing: !0, isAlive: !0 });
+            }),
+            (n.stop = function () {
+              n.gainNode.gain.setValueAtTime(0, n.audio.currentTime),
+                n.setState({ playing: !1 });
+            }),
+            (n.handleUpdateOffset = function (t) {
+              var e = t.target.value;
+              n.updateCSource(e), n.setState({ offset: e });
+            }),
+            (n.state = {
+              playing: !1,
+              isAlive: !1,
+              offset: e.node.options.offset || 1,
+            }),
+            n
+          );
+        }
+        (n = t),
+          ((e = r).prototype = Object.create(n.prototype)),
+          (e.prototype.constructor = e),
+          (e.__proto__ = n);
+        var a = r.prototype;
+        return (
+          (a.componentDidMount = function () {
+            try {
+              (this.audio = new (window.AudioContext ||
+                window.webkitAudioContext)()),
+                (this.csource = this.audio.createConstantSource()),
+                this.updateCSource(this.state.offset),
+                (this.gainNode = this.audio.createGain()),
+                this.csource.connect(this.gainNode),
+                this.props.updateParent(this.gainNode);
+            } catch (q) {
+              throw (console.log(q), new Error("Could not connect Oscillator"));
+            }
+          }),
+          (a.componentWillUnmount = function () {
+            this.state.isAlive && this.csource.stop(), this.audio.close();
+          }),
+          (a.updateCSource = function (t) {
+            (this.csource.offset.value = t),
+              (this.props.node.options.offset = t);
+          }),
+          (a.render = function () {
+            var t = this,
+              e = this.state.offset;
+            return o.a.createElement(
+              o.a.Fragment,
+              null,
+              this.props.editOpen &&
+                o.a.createElement(
+                  "div",
+                  { className: "node-edit-overlay" },
+                  o.a.createElement(
+                    "div",
+                    {
+                      className: "close",
+                      onClick: A(function () {
+                        return t.props.toggleEdit();
+                      }),
+                    },
+                    "X"
+                  ),
+                  o.a.createElement(
+                    "div",
+                    { onClick: A(function () {}) },
                     o.a.createElement(
-                      "div",
-                      { className: "source constant-source" },
-                      o.a.createElement(
-                        "div",
-                        { className: "node-text" },
-                        "Constant Source"
-                      ),
-                      o.a.createElement(
-                        "div",
-                        { className: "options" },
-                        o.a.createElement(
-                          "button",
-                          {
-                            onClick: E(function () {
-                              return t.play();
-                            }),
-                            disabled: this.state.playing,
-                          },
-                          "play"
-                        ),
-                        o.a.createElement(
-                          "button",
-                          {
-                            onClick: E(function () {
-                              return t.stop();
-                            }),
-                            disabled: !this.state.playing,
-                          },
-                          "stop"
-                        )
-                      )
+                      "label",
+                      null,
+                      "offset:",
+                      " ",
+                      o.a.createElement("input", {
+                        type: "number",
+                        value: e,
+                        onChange: this.handleUpdateOffset,
+                      })
                     )
-                  );
-                }),
-                r
-              );
-            })(o.a.Component),
-          },
-          Destinations: {
-            Speakers: (function (t) {
-              var e, n;
-              function r() {
-                return t.apply(this, arguments) || this;
-              }
-              (n = t),
-                ((e = r).prototype = Object.create(n.prototype)),
-                (e.prototype.constructor = e),
-                (e.__proto__ = n);
-              var a = r.prototype;
-              return (
-                (a.componentDidMount = function () {
-                  try {
-                    this.props.parent &&
-                      this.props.parent.connect(
-                        this.props.parent.context.destination
-                      );
-                  } catch (t) {
-                    throw new Error("Could not connect to Speakers");
-                  }
-                }),
-                (a.render = function () {
-                  return o.a.createElement(
-                    "div",
-                    { className: "destination speakers" },
-                    o.a.createElement(
-                      "div",
-                      { className: "node-text" },
-                      "Speakers"
-                    )
-                  );
-                }),
-                r
-              );
-            })(o.a.Component),
-          },
-          Filters: {
-            Gain: (function (t) {
-              var e, n;
-              function r(e) {
-                var n;
-                return (
-                  ((n = t.call(this, e) || this).updateGainValue = function (
-                    t
-                  ) {
-                    var e = t.target.value;
-                    n.setGain(e), n.setState({ gainValue: e });
-                  }),
-                  (n.setGain = function (t) {
-                    n.gainNode.gain && (n.gainNode.gain.value = t),
-                      (n.props.node.options.gain = t);
-                  }),
-                  (n.gainNode = null),
-                  (n.state = { gainValue: e.node.options.gain || 1 }),
-                  n
+                  )
+                ),
+              o.a.createElement(
+                "div",
+                { className: "source constant-source" },
+                o.a.createElement(
+                  "div",
+                  { className: "node-text" },
+                  "Constant Source"
+                ),
+                o.a.createElement(
+                  "div",
+                  { className: "options" },
+                  o.a.createElement(
+                    "button",
+                    {
+                      onClick: A(function () {
+                        return t.play();
+                      }),
+                      disabled: this.state.playing,
+                    },
+                    "play"
+                  ),
+                  o.a.createElement(
+                    "button",
+                    {
+                      onClick: A(function () {
+                        return t.stop();
+                      }),
+                      disabled: !this.state.playing,
+                    },
+                    "stop"
+                  )
+                )
+              )
+            );
+          }),
+          r
+        );
+      })(o.a.Component);
+      var _ = (function (t) {
+        var e, n;
+        function r() {
+          return t.apply(this, arguments) || this;
+        }
+        (n = t),
+          ((e = r).prototype = Object.create(n.prototype)),
+          (e.prototype.constructor = e),
+          (e.__proto__ = n);
+        var a = r.prototype;
+        return (
+          (a.componentDidMount = function () {
+            try {
+              this.props.parent &&
+                this.props.parent.connect(
+                  this.props.parent.context.destination
                 );
+            } catch (t) {
+              throw new Error("Could not connect to Speakers");
+            }
+          }),
+          (a.render = function () {
+            return o.a.createElement(
+              "div",
+              { className: "destination speakers" },
+              o.a.createElement("div", { className: "node-text" }, "Speakers")
+            );
+          }),
+          r
+        );
+      })(o.a.Component);
+      var x = (function (t) {
+        var e, n;
+        function r(e) {
+          var n;
+          return (
+            ((n = t.call(this, e) || this).updateGainValue = function (t) {
+              var e = t.target.value;
+              n.setGain(e), n.setState({ gainValue: e });
+            }),
+            (n.setGain = function (t) {
+              n.gainNode.gain && (n.gainNode.gain.value = t),
+                (n.props.node.options.gain = t);
+            }),
+            (n.gainNode = null),
+            (n.state = { gainValue: e.node.options.gain || 1 }),
+            n
+          );
+        }
+        (n = t),
+          ((e = r).prototype = Object.create(n.prototype)),
+          (e.prototype.constructor = e),
+          (e.__proto__ = n);
+        var a = r.prototype;
+        return (
+          (a.componentDidMount = function () {
+            try {
+              this.props.parent &&
+                ((this.gainNode = this.props.parent.context.createGain()),
+                this.setGain(this.state.gainValue),
+                this.props.parent.connect(this.gainNode),
+                this.props.updateParent(this.gainNode));
+            } catch (t) {
+              throw new Error("Could not connect Gain");
+            }
+          }),
+          (a.render = function () {
+            return o.a.createElement(
+              "div",
+              { className: "filter single-input gain" },
+              o.a.createElement("div", { className: "node-text" }, "Gain"),
+              o.a.createElement("input", {
+                type: "number",
+                value: this.state.gainValue,
+                onClick: A(function () {}),
+                onChange: this.updateGainValue,
+              })
+            );
+          }),
+          r
+        );
+      })(o.a.Component);
+      var N = (function (t) {
+        var e, n;
+        function r(e) {
+          var n;
+          return (
+            ((n = t.call(this, e) || this).updateDelayValue = function (t) {
+              var e = t.target.value;
+              n.setDelay(e), n.setState({ delayValue: e });
+            }),
+            (n.setDelay = function (t) {
+              n.delayNode.delayTime && (n.delayNode.delayTime.value = t),
+                (n.props.node.options.delay = t);
+            }),
+            (n.delayNode = null),
+            (n.state = { delayValue: e.node.options.delay || 0 }),
+            n
+          );
+        }
+        (n = t),
+          ((e = r).prototype = Object.create(n.prototype)),
+          (e.prototype.constructor = e),
+          (e.__proto__ = n);
+        var a = r.prototype;
+        return (
+          (a.componentDidMount = function () {
+            try {
+              this.props.parent &&
+                ((this.delayNode = this.props.parent.context.createDelay()),
+                this.setDelay(this.state.delayValue),
+                this.props.parent.connect(this.delayNode),
+                this.props.updateParent(this.delayNode));
+            } catch (t) {
+              throw new Error("Could not connect Delay");
+            }
+          }),
+          (a.render = function () {
+            return o.a.createElement(
+              "div",
+              { className: "filter single-input delay" },
+              o.a.createElement("div", { className: "node-text" }, "Delay"),
+              o.a.createElement("input", {
+                type: "number",
+                value: this.state.delayValue,
+                onClick: A(function () {}),
+                onChange: this.updateDelayValue,
+              })
+            );
+          }),
+          r
+        );
+      })(o.a.Component);
+      var S = (function (t) {
+          var e, n;
+          function r(e) {
+            var n;
+            return (
+              ((n = t.call(this, e) || this).updateSPanner = function (t) {
+                var e = t.target.value;
+                n.setPan(e), n.setState({ panValue: e });
+              }),
+              (n.setPan = function (t) {
+                n.sPanner.pan &&
+                  n.sPanner.pan.setValueAtTime(
+                    t,
+                    n.sPanner.context.currentTime
+                  ),
+                  (n.props.node.options.pan = t);
+              }),
+              (n.sPanner = null),
+              (n.state = { panValue: e.node.options.pan || 0 }),
+              n
+            );
+          }
+          (n = t),
+            ((e = r).prototype = Object.create(n.prototype)),
+            (e.prototype.constructor = e),
+            (e.__proto__ = n);
+          var a = r.prototype;
+          return (
+            (a.componentDidMount = function () {
+              try {
+                this.props.parent &&
+                  ((this.sPanner = this.props.parent.context.createStereoPanner()),
+                  this.setPan(this.state.panValue),
+                  this.props.parent.connect(this.sPanner),
+                  this.props.updateParent(this.sPanner));
+              } catch (t) {
+                throw new Error("Could not connect Stereo Panner");
               }
-              (n = t),
-                ((e = r).prototype = Object.create(n.prototype)),
-                (e.prototype.constructor = e),
-                (e.__proto__ = n);
-              var a = r.prototype;
-              return (
-                (a.componentDidMount = function () {
-                  try {
-                    this.props.parent &&
-                      ((this.gainNode = this.props.parent.context.createGain()),
-                      this.setGain(this.state.gainValue),
-                      this.props.parent.connect(this.gainNode),
-                      this.props.updateParent(this.gainNode));
-                  } catch (t) {
-                    throw new Error("Could not connect Gain");
-                  }
-                }),
-                (a.render = function () {
-                  return o.a.createElement(
-                    "div",
-                    { className: "filter single-input gain" },
-                    o.a.createElement(
-                      "div",
-                      { className: "node-text" },
-                      "Gain"
-                    ),
-                    o.a.createElement("input", {
-                      type: "number",
-                      value: this.state.gainValue,
-                      onClick: E(function () {}),
-                      onChange: this.updateGainValue,
-                    })
-                  );
-                }),
-                r
+            }),
+            (a.render = function () {
+              return o.a.createElement(
+                "div",
+                { className: "filter single-input s-pan" },
+                o.a.createElement(
+                  "div",
+                  { className: "node-text" },
+                  "Stereo Panner"
+                ),
+                o.a.createElement("input", {
+                  type: "range",
+                  value: this.state.panValue,
+                  onClick: A(function () {}),
+                  onChange: this.updateSPanner,
+                  min: "-1",
+                  max: "1",
+                  step: "0.1",
+                })
               );
-            })(o.a.Component),
-            Delay: (function (t) {
-              var e, n;
-              function r(e) {
-                var n;
-                return (
-                  ((n = t.call(this, e) || this).updateDelayValue = function (
-                    t
-                  ) {
-                    var e = t.target.value;
-                    n.setDelay(e), n.setState({ delayValue: e });
-                  }),
-                  (n.setDelay = function (t) {
-                    n.delayNode.delayTime && (n.delayNode.delayTime.value = t),
-                      (n.props.node.options.delay = t);
-                  }),
-                  (n.delayNode = null),
-                  (n.state = { delayValue: e.node.options.delay || 0 }),
-                  n
-                );
-              }
-              (n = t),
-                ((e = r).prototype = Object.create(n.prototype)),
-                (e.prototype.constructor = e),
-                (e.__proto__ = n);
-              var a = r.prototype;
-              return (
-                (a.componentDidMount = function () {
-                  try {
-                    this.props.parent &&
-                      ((this.delayNode = this.props.parent.context.createDelay()),
-                      this.setDelay(this.state.delayValue),
-                      this.props.parent.connect(this.delayNode),
-                      this.props.updateParent(this.delayNode));
-                  } catch (t) {
-                    throw new Error("Could not connect Delay");
-                  }
-                }),
-                (a.render = function () {
-                  return o.a.createElement(
-                    "div",
-                    { className: "filter single-input delay" },
-                    o.a.createElement(
-                      "div",
-                      { className: "node-text" },
-                      "Delay"
-                    ),
-                    o.a.createElement("input", {
-                      type: "number",
-                      value: this.state.delayValue,
-                      onClick: E(function () {}),
-                      onChange: this.updateDelayValue,
-                    })
-                  );
-                }),
-                r
-              );
-            })(o.a.Component),
-          },
+            }),
+            r
+          );
+        })(o.a.Component),
+        T = {
+          Sources: { Oscillator: O, "Constant Source": E },
+          Destinations: { Speakers: _ },
+          Filters: { Gain: x, Delay: N, "Stereo Panner": S },
         },
-        E = function (t) {
+        C = {
+          Oscillator: O,
+          ConstantSource: E,
+          Speakers: _,
+          Gain: x,
+          Delay: N,
+          StereoPanner: S,
+        },
+        A = function (t) {
           return function (e) {
             t && t(e), e.stopPropagation();
           };
         },
-        _ = {
+        P = {
           context: new Proxy(
             {},
             {
               get: function () {
                 return function () {
-                  return _;
+                  return P;
                 };
               },
             }
           ),
           connect: function () {},
         };
-      function x(t) {
+      function j(t) {
         return (
           (function (t) {
-            if (Array.isArray(t)) return N(t);
+            if (Array.isArray(t)) return I(t);
           })(t) ||
           (function (t) {
             if ("undefined" != typeof Symbol && Symbol.iterator in Object(t))
@@ -2433,7 +2463,7 @@
           })(t) ||
           (function (t, e) {
             if (!t) return;
-            if ("string" == typeof t) return N(t, e);
+            if ("string" == typeof t) return I(t, e);
             var n = Object.prototype.toString.call(t).slice(8, -1);
             "Object" === n && t.constructor && (n = t.constructor.name);
             if ("Map" === n || "Set" === n) return Array.from(t);
@@ -2441,7 +2471,7 @@
               "Arguments" === n ||
               /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)
             )
-              return N(t, e);
+              return I(t, e);
           })(t) ||
           (function () {
             throw new TypeError(
@@ -2450,12 +2480,12 @@
           })()
         );
       }
-      function N(t, e) {
+      function I(t, e) {
         (null == e || e > t.length) && (e = t.length);
         for (var n = 0, r = new Array(e); n < e; n++) r[n] = t[n];
         return r;
       }
-      var T = (function (t) {
+      var M = (function (t) {
         var e, n;
         function r() {
           for (var e, n = arguments.length, r = new Array(n), o = 0; o < n; o++)
@@ -2530,7 +2560,7 @@
               h = f.coords.split(","),
               y = h[0],
               v = h[1],
-              g = x(l);
+              g = j(l);
             g.splice(
               l.findIndex(function (t) {
                 return t === f;
@@ -2543,7 +2573,7 @@
             return o.a.createElement(
               "div",
               {
-                onClick: E(function () {
+                onClick: A(function () {
                   return t.stopMove();
                 }),
               },
@@ -2569,7 +2599,7 @@
                     o.a.createElement(
                       "div",
                       {
-                        onClick: E(function () {
+                        onClick: A(function () {
                           return c(n, f);
                         }),
                         className: "close",
@@ -2580,7 +2610,7 @@
                       "div",
                       {
                         className: "edit",
-                        onClick: E(function () {
+                        onClick: A(function () {
                           return t.toggleEdit();
                         }),
                       },
@@ -2594,11 +2624,16 @@
                       "div",
                       {
                         className: "move",
-                        onClick: E(function (e) {
+                        onClick: A(function (e) {
                           return t.initiateMove(e);
                         }),
                       },
                       o.a.createElement(w, { icon: "arrows-alt" })
+                    ),
+                    o.a.createElement(
+                      "div",
+                      { className: "info" },
+                      o.a.createElement(w, { icon: "question-circle" })
                     )
                   )
                 ),
@@ -2640,7 +2675,7 @@
           r
         );
       })(o.a.Component);
-      var A = (function (t) {
+      var L = (function (t) {
           var e, n;
           function r(e) {
             var n;
@@ -2650,7 +2685,7 @@
             });
             return (
               (n.roots = r.length ? r : e.nodes),
-              (n.parent = r.length ? void 0 : _),
+              (n.parent = r.length ? void 0 : P),
               n
             );
           }
@@ -2670,8 +2705,8 @@
                 "div",
                 null,
                 this.roots.map(function (e) {
-                  return o.a.createElement(T, {
-                    key: e.coords,
+                  return o.a.createElement(M, {
+                    key: e.key,
                     graphKey: t.props.graphKey,
                     node: e,
                     allNodes: r,
@@ -2686,10 +2721,10 @@
             r
           );
         })(o.a.Component),
-        C = (function () {
+        z = (function () {
           function t(t, e, n) {
-            (this.isSource = Object.keys(O.Sources).includes(e.name)),
-              (this.isSink = Object.keys(O.Destinations).includes(e.name)),
+            (this.isSource = Object.keys(T.Sources).includes(e.name)),
+              (this.isSink = Object.keys(T.Destinations).includes(e.name)),
               (this.maxLinks = this.isSink || this.isSource ? 1 : 2),
               (this.coords = t),
               (this.nodeType = e),
@@ -2728,7 +2763,8 @@
             t
           );
         })(),
-        S = function (t) {
+        D = n("55Ip"),
+        G = function (t) {
           var e = t.nodes,
             n = t.setselectedNodeRootType,
             r = t.selectedNodeRootType;
@@ -2772,27 +2808,36 @@
             )
           );
         };
-      function j(t) {
+      function R(t, e) {
+        var n;
+        if ("undefined" == typeof Symbol || null == t[Symbol.iterator]) {
+          if (
+            Array.isArray(t) ||
+            (n = U(t)) ||
+            (e && t && "number" == typeof t.length)
+          ) {
+            n && (t = n);
+            var r = 0;
+            return function () {
+              return r >= t.length ? { done: !0 } : { done: !1, value: t[r++] };
+            };
+          }
+          throw new TypeError(
+            "Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+          );
+        }
+        return (n = t[Symbol.iterator]()).next.bind(n);
+      }
+      function K(t) {
         return (
           (function (t) {
-            if (Array.isArray(t)) return P(t);
+            if (Array.isArray(t)) return W(t);
           })(t) ||
           (function (t) {
             if ("undefined" != typeof Symbol && Symbol.iterator in Object(t))
               return Array.from(t);
           })(t) ||
-          (function (t, e) {
-            if (!t) return;
-            if ("string" == typeof t) return P(t, e);
-            var n = Object.prototype.toString.call(t).slice(8, -1);
-            "Object" === n && t.constructor && (n = t.constructor.name);
-            if ("Map" === n || "Set" === n) return Array.from(t);
-            if (
-              "Arguments" === n ||
-              /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)
-            )
-              return P(t, e);
-          })(t) ||
+          U(t) ||
           (function () {
             throw new TypeError(
               "Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
@@ -2800,19 +2845,34 @@
           })()
         );
       }
-      function P(t, e) {
+      function U(t, e) {
+        if (t) {
+          if ("string" == typeof t) return W(t, e);
+          var n = Object.prototype.toString.call(t).slice(8, -1);
+          return (
+            "Object" === n && t.constructor && (n = t.constructor.name),
+            "Map" === n || "Set" === n
+              ? Array.from(t)
+              : "Arguments" === n ||
+                /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)
+              ? W(t, e)
+              : void 0
+          );
+        }
+      }
+      function W(t, e) {
         (null == e || e > t.length) && (e = t.length);
         for (var n = 0, r = new Array(e); n < e; n++) r[n] = t[n];
         return r;
       }
-      var I = {
+      var F = {
           activeGraphs: {},
           selectedNodeRootType: void 0,
           proposedNode: void 0,
         },
-        M = 0,
-        z = 0,
-        L = (function (t) {
+        Y = 0,
+        V = 0,
+        X = (function (t) {
           var e, n;
           function r() {
             for (
@@ -2822,7 +2882,7 @@
             )
               r[o] = arguments[o];
             return (
-              ((e = t.call.apply(t, [this].concat(r)) || this).state = I),
+              ((e = t.call.apply(t, [this].concat(r)) || this).state = F),
               (e.addNewGraph = function (t) {
                 var n = t.pageY,
                   r = t.pageX;
@@ -2837,7 +2897,7 @@
                         {},
                         i,
                         ((o = {}),
-                        (o[e.getGraphKey(s)] = [new C(s, a, z++)]),
+                        (o[e.getGraphKey(s)] = [new z(s, a, V++)]),
                         o)
                       ),
                     };
@@ -2853,10 +2913,10 @@
                 });
               }),
               (e.clearAll = function () {
-                e.setState(I);
+                e.setState(F);
               }),
               (e.getGraphKey = function (t) {
-                return t.split("-")[0] + "-" + ++M;
+                return t.split("-")[0] + "-" + ++Y;
               }),
               (e.removeNode = function (t, n) {
                 e.setState(function (r) {
@@ -2872,7 +2932,7 @@
                         r.has(a) ||
                           (r.add(a),
                           n.push(a),
-                          (o = [].concat(j(o), j(a._links))));
+                          (o = [].concat(K(o), K(a._links))));
                       }
                       s[e.getGraphKey(t.coords)] = n;
                     }),
@@ -2901,7 +2961,7 @@
                           {},
                           c,
                           ((i = {}),
-                          (i[e.getGraphKey(t.rootKey)] = [].concat(j(r), j(o))),
+                          (i[e.getGraphKey(t.rootKey)] = [].concat(K(r), K(o))),
                           i)
                         ),
                       }
@@ -2921,12 +2981,81 @@
               e
             );
           }
-          return (
-            (n = t),
+          (n = t),
             ((e = r).prototype = Object.create(n.prototype)),
             (e.prototype.constructor = e),
-            (e.__proto__ = n),
-            (r.prototype.render = function () {
+            (e.__proto__ = n);
+          var a = r.prototype;
+          return (
+            (a.componentDidMount = function () {
+              var t, e, n, r;
+              if (
+                null === (t = this.props.location) ||
+                void 0 === t ||
+                null === (e = t.state) ||
+                void 0 === e
+                  ? void 0
+                  : e.config
+              ) {
+                for (
+                  var o = JSON.parse(
+                      null === (n = this.props.location) ||
+                        void 0 === n ||
+                        null === (r = n.state) ||
+                        void 0 === r
+                        ? void 0
+                        : r.config
+                    ).nodes,
+                    a = Object.entries(o).map(function (t) {
+                      var e = t[0],
+                        n = t[1],
+                        r = n.options,
+                        o = n.links,
+                        a = n.type,
+                        i = new z(e, C[a], V++);
+                      return (
+                        (i.options = r || {}), (i._loadingLinks = o || []), i
+                      );
+                    }),
+                    i = {};
+                  a.length;
+
+                ) {
+                  var s = a[0],
+                    c = this.getGraphKey(s.coords);
+                  i[c] = [s];
+                  for (var l = new Set(), u = [s]; u.length; ) {
+                    var f = u.pop();
+                    if (!l.has(f.coords)) {
+                      l.add(f.coords), a.splice(a.indexOf(f), 1);
+                      for (
+                        var p,
+                          d = function () {
+                            var t = p.value,
+                              e = a.find(function (e) {
+                                return e.coords === t;
+                              });
+                            f.addLink(e),
+                              e.addLink(f),
+                              i[c].push(e),
+                              e._loadingLinks.splice(
+                                e._loadingLinks.indexOf(f.coords),
+                                1
+                              ),
+                              u.push(e);
+                          },
+                          m = R(f._loadingLinks);
+                        !(p = m()).done;
+
+                      )
+                        d();
+                    }
+                  }
+                }
+                this.setState({ activeGraphs: i });
+              }
+            }),
+            (a.render = function () {
               var t = this;
               return o.a.createElement(
                 "div",
@@ -2941,9 +3070,9 @@
                 },
                 o.a.createElement(
                   "div",
-                  { onClick: E(), className: "super-menu" },
-                  o.a.createElement(S, {
-                    nodes: O,
+                  { onClick: A(), className: "super-menu" },
+                  o.a.createElement(G, {
+                    nodes: T,
                     setselectedNodeRootType: this.setselectedNodeRootType,
                     selectedNodeRootType: this.state.selectedNodeRootType,
                   }),
@@ -2960,13 +3089,18 @@
                       },
                     },
                     " play "
+                  ),
+                  o.a.createElement(
+                    "span",
+                    null,
+                    o.a.createElement(D.b, { to: { pathname: "/" } }, "home")
                   )
                 ),
                 Object.entries(this.state.activeGraphs).map(function (e) {
                   var n,
                     r = e[0],
                     a = e[1];
-                  return o.a.createElement(A, {
+                  return o.a.createElement(L, {
                     key: r,
                     graphKey: r,
                     nodes: a,
@@ -2983,69 +3117,6 @@
             r
           );
         })(o.a.Component);
-    },
-    klQ5: function (t, e, n) {
-      var r = n("emib"),
-        o = n("TUPI"),
-        a = n("rjfK").f,
-        i = n("chL8").f,
-        s = n("mhTz"),
-        c = n("lb9j"),
-        l = r.RegExp,
-        u = l,
-        f = l.prototype,
-        p = /a/g,
-        d = /a/g,
-        m = new l(p) !== p;
-      if (
-        n("QPJK") &&
-        (!m ||
-          n("96qb")(function () {
-            return (
-              (d[n("sOol")("match")] = !1),
-              l(p) != p || l(d) == d || "/a/i" != l(p, "i")
-            );
-          }))
-      ) {
-        l = function (t, e) {
-          var n = this instanceof l,
-            r = s(t),
-            a = void 0 === e;
-          return !n && r && t.constructor === l && a
-            ? t
-            : o(
-                m
-                  ? new u(r && !a ? t.source : t, e)
-                  : u(
-                      (r = t instanceof l) ? t.source : t,
-                      r && a ? c.call(t) : e
-                    ),
-                n ? this : f,
-                l
-              );
-        };
-        for (
-          var h = function (t) {
-              (t in l) ||
-                a(l, t, {
-                  configurable: !0,
-                  get: function () {
-                    return u[t];
-                  },
-                  set: function (e) {
-                    u[t] = e;
-                  },
-                });
-            },
-            y = i(u),
-            v = 0;
-          y.length > v;
-
-        )
-          h(y[v++]);
-        (f.constructor = l), (l.prototype = f), n("IYdN")(r, "RegExp", l);
-      }
-      n("to/b")("RegExp");
     },
     n0hJ: function (t, e, n) {
       var r = n("P8UN");
@@ -3082,18 +3153,6 @@
         },
       });
     },
-    yLpj: function (t, e) {
-      var n;
-      n = (function () {
-        return this;
-      })();
-      try {
-        n = n || new Function("return this")();
-      } catch (r) {
-        "object" == typeof window && (n = window);
-      }
-      t.exports = n;
-    },
     ys0W: function (t, e, n) {
       var r = n("QPJK"),
         o = n("2mBY"),
@@ -3126,4 +3185,4 @@
     },
   },
 ]);
-//# sourceMappingURL=component---src-pages-platform-jsx-721941b4223a9b58d697.js.map
+//# sourceMappingURL=component---src-pages-platform-jsx-ec974f041b6e90c234b6.js.map
