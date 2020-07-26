@@ -22,7 +22,7 @@ export default class Graph extends React.Component {
       <div>
         {this.roots.map((node) => (
           <Node
-            key={node.coords}
+            key={node.key}
             graphKey={this.props.graphKey}
             node={node}
             allNodes={nodes}

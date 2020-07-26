@@ -2,8 +2,6 @@ import { nodeTypes } from "./utils";
 
 export default class Node {
   constructor(coords, nodeType, key) {
-    // The only way a single node can be both a sink and a source is if
-    // it is a source
     this.isSource = Object.keys(nodeTypes.Sources).includes(nodeType.name);
     this.isSink = Object.keys(nodeTypes.Destinations).includes(nodeType.name);
 
@@ -37,7 +35,7 @@ export default class Node {
   }
 
   unLinkAll() {
-    this._links.map(l => l.unLink(this));
+    this._links.map((l) => l.unLink(this));
   }
 
   unLink(node) {

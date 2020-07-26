@@ -26,7 +26,9 @@ export default class Platform extends React.Component {
       return {
         activeGraphs: {
           ...activeGraphs,
-          [this.getGraphKey(coords)]: [new Node(coords, selectedNodeRootType, nodeNum++)],
+          [this.getGraphKey(coords)]: [
+            new Node(coords, selectedNodeRootType, nodeNum++),
+          ],
         },
       };
     });
@@ -90,8 +92,8 @@ export default class Platform extends React.Component {
     const g2 = this.state.activeGraphs[p2.rootKey];
 
     // Update nodes
-    const n1 = p1.node
-    const n2 = p2.node
+    const n1 = p1.node;
+    const n2 = p2.node;
 
     // Enforce no loops.
     if (!g1.includes(n2)) {

@@ -3,6 +3,7 @@ import ConstantSource from "../components/Sources/ConstantSource";
 import Speakers from "../components/Destinations/Speakers";
 import Gain from "../components/Filters/Gain";
 import Delay from "../components/Filters/Delay";
+import StereoPanner from "../components/Filters/StereoPanner";
 
 export const nodeTypes = {
   Sources: {
@@ -15,6 +16,7 @@ export const nodeTypes = {
   Filters: {
     Gain,
     Delay,
+    StereoPanner,
   },
 };
 

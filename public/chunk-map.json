@@ -1,1 +1,12 @@
-{"app":["/app-fc656ee04cd58830d3be.js"],"component---src-pages-error-jsx":["/component---src-pages-error-jsx-39ab3ad2348524f60b12.js"],"component---src-pages-index-js":["/component---src-pages-index-js-3508fe0086506fe6ed8e.js"],"component---src-pages-platform-jsx":["/component---src-pages-platform-jsx-721941b4223a9b58d697.js"]}
+{
+  "app": ["/app-fc656ee04cd58830d3be.js"],
+  "component---src-pages-error-jsx": [
+    "/component---src-pages-error-jsx-39ab3ad2348524f60b12.js"
+  ],
+  "component---src-pages-index-js": [
+    "/component---src-pages-index-js-3508fe0086506fe6ed8e.js"
+  ],
+  "component---src-pages-platform-jsx": [
+    "/component---src-pages-platform-jsx-721941b4223a9b58d697.js"
+  ]
+}

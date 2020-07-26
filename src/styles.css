@@ -151,6 +151,10 @@
   top: 45px;
   left: 32px;
 }
+.single-input > input[type="range"] { 
+  width: 50px;
+  left: 24px;
+}
 
 .filter {
   border-radius: 100%;
@@ -164,6 +168,11 @@
 /* Delay */
 .delay {
  background: yellow;
+}
+
+/* Stereo Panner */
+.s-pan {
+  background: coral;
 }
 
 /* Constant Source */

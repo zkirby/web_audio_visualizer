@@ -1,1 +1,73 @@
-{"errors":[],"warnings":[],"namedChunkGroups":{"app":{"chunks":[7,5,1],"assets":["webpack-runtime-73db26448305eb3a7db0.js","webpack-runtime-73db26448305eb3a7db0.js.map","framework-99d336a6166746dcca85.js","framework-99d336a6166746dcca85.js.map","app-fc656ee04cd58830d3be.js","app-fc656ee04cd58830d3be.js.map"],"children":{},"childAssets":{}},"component---src-pages-error-jsx":{"chunks":[3],"assets":["component---src-pages-error-jsx-39ab3ad2348524f60b12.js","component---src-pages-error-jsx-39ab3ad2348524f60b12.js.map"],"children":{},"childAssets":{}},"component---src-pages-index-js":{"chunks":[6,2,0,4],"assets":["styles.efe0923fc40b22e1a9d2.css","styles-1211262dd08146354a2f.js","styles-1211262dd08146354a2f.js.map","cb1608f2-b2cd4814c62d0dd358dd.js","cb1608f2-b2cd4814c62d0dd358dd.js.map","component---src-pages-platform-jsx-721941b4223a9b58d697.js","component---src-pages-platform-jsx-721941b4223a9b58d697.js.map","component---src-pages-index-js-3508fe0086506fe6ed8e.js","component---src-pages-index-js-3508fe0086506fe6ed8e.js.map"],"children":{},"childAssets":{}},"component---src-pages-platform-jsx":{"chunks":[0],"assets":["component---src-pages-platform-jsx-721941b4223a9b58d697.js","component---src-pages-platform-jsx-721941b4223a9b58d697.js.map"],"children":{},"childAssets":{}}},"assetsByChunkName":{"app":["webpack-runtime-73db26448305eb3a7db0.js","framework-99d336a6166746dcca85.js","app-fc656ee04cd58830d3be.js"],"component---src-pages-error-jsx":["component---src-pages-error-jsx-39ab3ad2348524f60b12.js"],"component---src-pages-index-js":["styles.efe0923fc40b22e1a9d2.css","styles-1211262dd08146354a2f.js","cb1608f2-b2cd4814c62d0dd358dd.js","component---src-pages-platform-jsx-721941b4223a9b58d697.js","component---src-pages-index-js-3508fe0086506fe6ed8e.js"],"component---src-pages-platform-jsx":["component---src-pages-platform-jsx-721941b4223a9b58d697.js"]}}
+{
+  "errors": [],
+  "warnings": [],
+  "namedChunkGroups": {
+    "app": {
+      "chunks": [7, 5, 1],
+      "assets": [
+        "webpack-runtime-73db26448305eb3a7db0.js",
+        "webpack-runtime-73db26448305eb3a7db0.js.map",
+        "framework-99d336a6166746dcca85.js",
+        "framework-99d336a6166746dcca85.js.map",
+        "app-fc656ee04cd58830d3be.js",
+        "app-fc656ee04cd58830d3be.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "component---src-pages-error-jsx": {
+      "chunks": [3],
+      "assets": [
+        "component---src-pages-error-jsx-39ab3ad2348524f60b12.js",
+        "component---src-pages-error-jsx-39ab3ad2348524f60b12.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "component---src-pages-index-js": {
+      "chunks": [6, 2, 0, 4],
+      "assets": [
+        "styles.efe0923fc40b22e1a9d2.css",
+        "styles-1211262dd08146354a2f.js",
+        "styles-1211262dd08146354a2f.js.map",
+        "cb1608f2-b2cd4814c62d0dd358dd.js",
+        "cb1608f2-b2cd4814c62d0dd358dd.js.map",
+        "component---src-pages-platform-jsx-721941b4223a9b58d697.js",
+        "component---src-pages-platform-jsx-721941b4223a9b58d697.js.map",
+        "component---src-pages-index-js-3508fe0086506fe6ed8e.js",
+        "component---src-pages-index-js-3508fe0086506fe6ed8e.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "component---src-pages-platform-jsx": {
+      "chunks": [0],
+      "assets": [
+        "component---src-pages-platform-jsx-721941b4223a9b58d697.js",
+        "component---src-pages-platform-jsx-721941b4223a9b58d697.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "assetsByChunkName": {
+    "app": [
+      "webpack-runtime-73db26448305eb3a7db0.js",
+      "framework-99d336a6166746dcca85.js",
+      "app-fc656ee04cd58830d3be.js"
+    ],
+    "component---src-pages-error-jsx": [
+      "component---src-pages-error-jsx-39ab3ad2348524f60b12.js"
+    ],
+    "component---src-pages-index-js": [
+      "styles.efe0923fc40b22e1a9d2.css",
+      "styles-1211262dd08146354a2f.js",
+      "cb1608f2-b2cd4814c62d0dd358dd.js",
+      "component---src-pages-platform-jsx-721941b4223a9b58d697.js",
+      "component---src-pages-index-js-3508fe0086506fe6ed8e.js"
+    ],
+    "component---src-pages-platform-jsx": [
+      "component---src-pages-platform-jsx-721941b4223a9b58d697.js"
+    ]
+  }
+}
