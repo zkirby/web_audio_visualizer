@@ -1,7 +1,6 @@
 import React from "react";
-import Platform from "./platform";
-import Home from "./Home";
-import Error from "./Error";
+import Error from "../components/Error";
+import { Link } from "gatsby";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faTimesCircle,
@@ -9,20 +8,19 @@ import {
   faArrowsAlt,
   faQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { SINGLE_OSCILL } from "../utils/defaults";
 
 import "../styles.css";
 
 library.add(faTimesCircle, faPen, faArrowsAlt, faQuestionCircle);
 const Index = () => (
-  <Router>
-    <Error>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/playground" component={Platform} />
-      </Switch>
-    </Error>
-  </Router>
+  <Error>
+    <h2>Audio.play</h2>
+    <Link to="/playground">Go play</Link>
+    <Link to="/playground" state={{ config: SINGLE_OSCILL }}>
+      With State
+    </Link>
+  </Error>
 );
 
 export default Index;

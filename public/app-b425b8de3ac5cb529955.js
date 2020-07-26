@@ -11,7 +11,7 @@
       (e.__esModule = !0),
         (e.withPrefix = d),
         (e.withAssetPrefix = function (t) {
-          return d(t, "/web_audio_visualizer");
+          return d(t, "");
         }),
         (e.navigateTo = e.replace = e.push = e.navigate = e.default = void 0);
       var o = r(n("8OQS")),
@@ -29,12 +29,10 @@
       };
       function d(t, e) {
         var n, r;
-        if ((void 0 === e && (e = "/web_audio_visualizer"), !v(t))) return t;
+        if ((void 0 === e && (e = ""), !v(t))) return t;
         if (t.startsWith("./") || t.startsWith("../")) return t;
         var o =
-          null !==
-            (n =
-              null !== (r = e) && void 0 !== r ? r : "/web_audio_visualizer") &&
+          null !== (n = null !== (r = e) && void 0 !== r ? r : "") &&
           void 0 !== n
             ? n
             : "/";
@@ -508,9 +506,9 @@
         b = n("BjK0"),
         w = n("DFzH"),
         P = n("5SQf"),
-        _ = n("kxs/"),
-        x = n("pSXQ"),
-        S = n("nsRs"),
+        x = n("kxs/"),
+        S = n("pSXQ"),
+        _ = n("nsRs"),
         O = n("AfxU"),
         E = n("Drra"),
         j = n("lHo0"),
@@ -529,15 +527,15 @@
         M = l("symbols"),
         W = l("op-symbols"),
         K = Object.prototype,
-        z = "function" == typeof T && !!j.f,
-        H = r.QObject,
-        Y = !H || !H.prototype || !H.prototype.findChild,
-        B =
+        H = "function" == typeof T && !!j.f,
+        Y = r.QObject,
+        B = !Y || !Y.prototype || !Y.prototype.findChild,
+        z =
           i &&
           s(function () {
             return (
               7 !=
-              S(
+              _(
                 L({}, "a", {
                   get: function () {
                     return L(this, "a", { value: 7 }).a;
@@ -552,11 +550,11 @@
               }
             : L,
         V = function (t) {
-          var e = (M[t] = S(T.prototype));
+          var e = (M[t] = _(T.prototype));
           return (e._k = t), e;
         },
         J =
-          z && "symbol" == typeof T.iterator
+          H && "symbol" == typeof T.iterator
             ? function (t) {
                 return "symbol" == typeof t;
               }
@@ -567,14 +565,14 @@
           return (
             t === K && G(W, e, n),
             y(t),
-            (e = _(e, !0)),
+            (e = x(e, !0)),
             y(n),
             o(M, e)
               ? (n.enumerable
                   ? (o(t, D) && t[D][e] && (t[D][e] = !1),
-                    (n = S(n, { enumerable: x(0, !1) })))
-                  : (o(t, D) || L(t, D, x(1, {})), (t[D][e] = !0)),
-                B(t, e, n))
+                    (n = _(n, { enumerable: S(0, !1) })))
+                  : (o(t, D) || L(t, D, S(1, {})), (t[D][e] = !0)),
+                z(t, e, n))
               : L(t, e, n)
           );
         },
@@ -585,14 +583,14 @@
           return t;
         },
         Q = function (t) {
-          var e = F.call(this, (t = _(t, !0)));
+          var e = F.call(this, (t = x(t, !0)));
           return (
             !(this === K && o(M, t) && !o(W, t)) &&
             (!(e || !o(this, t) || !o(M, t) || (o(this, D) && this[D][t])) || e)
           );
         },
         X = function (t, e) {
-          if (((t = P(t)), (e = _(e, !0)), t !== K || !o(M, e) || o(W, e))) {
+          if (((t = P(t)), (e = x(e, !0)), t !== K || !o(M, e) || o(W, e))) {
             var n = C(t, e);
             return (
               !n || !o(M, e) || (o(t, D) && t[D][e]) || (n.enumerable = !0), n
@@ -613,7 +611,7 @@
             !o(M, (e = r[a++])) || (n && !o(K, e)) || i.push(M[e]);
           return i;
         };
-      z ||
+      H ||
         (u(
           (T = function () {
             if (this instanceof T)
@@ -622,9 +620,9 @@
               e = function (n) {
                 this === K && e.call(W, n),
                   o(this, D) && o(this[D], t) && (this[D][t] = !1),
-                  B(this, t, x(1, n));
+                  z(this, t, S(1, n));
               };
-            return i && Y && B(K, t, { configurable: !0, set: e }), V(t);
+            return i && B && z(K, t, { configurable: !0, set: e }), V(t);
           }).prototype,
           "toString",
           function () {
@@ -640,7 +638,7 @@
         (d.f = function (t) {
           return V(h(t));
         })),
-        a(a.G + a.W + a.F * !z, { Symbol: T });
+        a(a.G + a.W + a.F * !H, { Symbol: T });
       for (
         var et = "hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(
             ","
@@ -651,7 +649,7 @@
       )
         h(et[nt++]);
       for (var rt = k(h.store), ot = 0; rt.length > ot; ) v(rt[ot++]);
-      a(a.S + a.F * !z, "Symbol", {
+      a(a.S + a.F * !H, "Symbol", {
         for: function (t) {
           return o(q, (t += "")) ? q[t] : (q[t] = T(t));
         },
@@ -660,15 +658,15 @@
           for (var e in q) if (q[e] === t) return e;
         },
         useSetter: function () {
-          Y = !0;
+          B = !0;
         },
         useSimple: function () {
-          Y = !1;
+          B = !1;
         },
       }),
-        a(a.S + a.F * !z, "Object", {
+        a(a.S + a.F * !H, "Object", {
           create: function (t, e) {
-            return void 0 === e ? S(t) : Z(S(t), e);
+            return void 0 === e ? _(t) : Z(_(t), e);
           },
           defineProperty: G,
           defineProperties: Z,
@@ -688,7 +686,7 @@
           a(
             a.S +
               a.F *
-                (!z ||
+                (!H ||
                   s(function () {
                     var t = T();
                     return (
@@ -911,13 +909,13 @@
         b = n("WfYH"),
         w = n("JWvD"),
         P = n("CL53"),
-        _ = n("Vce4"),
-        x = c.TypeError,
-        S = c.process,
-        O = S && S.versions,
+        x = n("Vce4"),
+        S = c.TypeError,
+        _ = c.process,
+        O = _ && _.versions,
         E = (O && O.v8) || "",
         j = c.Promise,
-        R = "process" == l(S),
+        R = "process" == l(_),
         k = function () {},
         C = (o = b.f),
         L = !!(function () {
@@ -964,7 +962,7 @@
                               (n = u(r)),
                               l && (l.exit(), (a = !0))),
                           n === e.promise
-                            ? s(x("Promise-chain cycle"))
+                            ? s(S("Promise-chain cycle"))
                             : (i = I(n))
                             ? i.call(n, c, s)
                             : c(n))
@@ -992,7 +990,7 @@
               (i &&
                 ((e = w(function () {
                   R
-                    ? S.emit("unhandledRejection", o, t)
+                    ? _.emit("unhandledRejection", o, t)
                     : (n = c.onunhandledrejection)
                     ? n({ promise: t, reason: o })
                     : (r = c.console) &&
@@ -1013,7 +1011,7 @@
           m.call(c, function () {
             var e;
             R
-              ? S.emit("rejectionHandled", t)
+              ? _.emit("rejectionHandled", t)
               : (e = c.onrejectionhandled) && e({ promise: t, reason: t._v });
           });
         },
@@ -1032,7 +1030,7 @@
           if (!n._d) {
             (n._d = !0), (n = n._w || n);
             try {
-              if (n === t) throw x("Promise can't be resolved itself");
+              if (n === t) throw S("Promise can't be resolved itself");
               (e = I(t))
                 ? y(function () {
                     var r = { _w: n, _d: !1 };
@@ -1071,7 +1069,7 @@
             return (
               (n.ok = "function" != typeof t || t),
               (n.fail = "function" == typeof e && e),
-              (n.domain = R ? S.domain : void 0),
+              (n.domain = R ? _.domain : void 0),
               this._c.push(n),
               this._a && this._a.push(n),
               this._s && T(this, !1),
@@ -1103,7 +1101,7 @@
         }),
         f(f.S + f.F * (u || !L), "Promise", {
           resolve: function (t) {
-            return _(u && this === a ? j : this, t);
+            return x(u && this === a ? j : this, t);
           },
         }),
         f(
@@ -1327,8 +1325,8 @@
           b = y,
           w = g ? "set" : "add",
           P = b && b.prototype,
-          _ = {},
-          x = function (t) {
+          x = {},
+          S = function (t) {
             var e = P[t];
             i(
               P,
@@ -1358,10 +1356,10 @@
                 new b().entries().next();
               })))
         ) {
-          var S = new b(),
-            O = S[w](m ? {} : -0, 1) != S,
+          var _ = new b(),
+            O = _[w](m ? {} : -0, 1) != _,
             E = f(function () {
-              S.has(1);
+              _.has(1);
             }),
             j = p(function (t) {
               new b(t);
@@ -1379,15 +1377,15 @@
               return null != n && c(n, g, r[w], r), r;
             })).prototype = P),
             (P.constructor = b)),
-            (E || R) && (x("delete"), x("has"), g && x("get")),
-            (R || O) && x(w),
+            (E || R) && (S("delete"), S("has"), g && S("get")),
+            (R || O) && S(w),
             m && P.clear && delete P.clear;
         } else
           (b = v.getConstructor(e, t, g, w)), a(b.prototype, n), (u.NEED = !0);
         return (
           h(b, t),
-          (_[t] = b),
-          o(o.G + o.W + o.F * (b != y), _),
+          (x[t] = b),
+          o(o.G + o.W + o.F * (b != y), x),
           m || v.setStrong(b, t, g),
           b
         );
@@ -1997,23 +1995,23 @@
                 b = void 0 === e ? 4294967295 : e >>> 0;
               if (0 === b) return [];
               if (0 === p.length) return null === c(y, p) ? [p] : [];
-              for (var w = 0, P = 0, _ = []; P < p.length; ) {
+              for (var w = 0, P = 0, x = []; P < p.length; ) {
                 y.lastIndex = d ? P : 0;
-                var x,
-                  S = c(y, d ? p : p.slice(P));
+                var S,
+                  _ = c(y, d ? p : p.slice(P));
                 if (
-                  null === S ||
-                  (x = f(u(y.lastIndex + (d ? 0 : P)), p.length)) === w
+                  null === _ ||
+                  (S = f(u(y.lastIndex + (d ? 0 : P)), p.length)) === w
                 )
                   P = a(p, P, g);
                 else {
-                  if ((_.push(p.slice(w, P)), _.length === b)) return _;
-                  for (var O = 1; O <= S.length - 1; O++)
-                    if ((_.push(S[O]), _.length === b)) return _;
-                  P = w = x;
+                  if ((x.push(p.slice(w, P)), x.length === b)) return x;
+                  for (var O = 1; O <= _.length - 1; O++)
+                    if ((x.push(_[O]), x.length === b)) return x;
+                  P = w = S;
                 }
               }
-              return _.push(p.slice(w)), _;
+              return x.push(p.slice(w)), x;
             },
           ]
         );
@@ -2210,25 +2208,25 @@
                 P < w;
                 P++
               ) {
-                var _ = m[P],
-                  x = a[P];
-                if (h(_)) {
-                  b[_.slice(1) || "*"] = a
+                var x = m[P],
+                  S = a[P];
+                if (h(x)) {
+                  b[x.slice(1) || "*"] = a
                     .slice(P)
                     .map(decodeURIComponent)
                     .join("/");
                   break;
                 }
-                if (void 0 === x) {
+                if (void 0 === S) {
                   p = !0;
                   break;
                 }
-                var S = f.exec(_);
-                if (S && !u) {
-                  -1 === y.indexOf(S[1]) || o()(!1);
-                  var O = decodeURIComponent(x);
-                  b[S[1]] = O;
-                } else if (_ !== x) {
+                var _ = f.exec(x);
+                if (_ && !u) {
+                  -1 === y.indexOf(_[1]) || o()(!1);
+                  var O = decodeURIComponent(S);
+                  b[_[1]] = O;
+                } else if (x !== S) {
                   p = !0;
                   break;
                 }
@@ -2572,7 +2570,7 @@
           )
         : "serviceWorker" in navigator &&
           navigator.serviceWorker
-            .register("/web_audio_visualizer/sw.js")
+            .register("/sw.js")
             .then(function (t) {
               t.addEventListener("updatefound", function () {
                 Object(r.apiRunner)("onServiceWorkerUpdateFound", {
@@ -2956,14 +2954,14 @@
               prevLocation: e,
             });
         },
-        _ = function (t, e) {
+        x = function (t, e) {
           w(t.pathname) ||
             Object(r.apiRunner)("onRouteUpdate", {
               location: t,
               prevLocation: e,
             });
         },
-        x = function (t, e) {
+        S = function (t, e) {
           void 0 === e && (e = {});
           var n = Object(m.parsePath)(t).pathname,
             o = b[n];
@@ -3002,7 +3000,7 @@
             });
           }
         };
-      function S(t, e) {
+      function _(t, e) {
         var n = this,
           o = e.location,
           i = o.pathname,
@@ -3062,10 +3060,10 @@
           var n = e.prototype;
           return (
             (n.componentDidMount = function () {
-              _(this.props.location, null);
+              x(this.props.location, null);
             }),
             (n.componentDidUpdate = function (t, e, n) {
-              n && _(this.props.location, t.location);
+              n && x(this.props.location, t.location);
             }),
             (n.getSnapshotBeforeUpdate = function (t) {
               return (
@@ -3169,13 +3167,13 @@
           t.location.action = t.action;
         }),
         (window.___push = function (t) {
-          return x(t, { replace: !1 });
+          return S(t, { replace: !1 });
         }),
         (window.___replace = function (t) {
-          return x(t, { replace: !0 });
+          return S(t, { replace: !0 });
         }),
         (window.___navigate = function (t, e) {
-          return x(t, e);
+          return S(t, e);
         }),
         w(window.location.pathname),
         Object(r.apiRunnerAsync)("onClientEntry").then(function () {
@@ -3208,11 +3206,11 @@
                       { location: o },
                       i.a.createElement(
                         s.ScrollContext,
-                        { location: o, shouldUpdateScroll: S },
+                        { location: o, shouldUpdateScroll: _ },
                         i.a.createElement(
                           c.Router,
                           {
-                            basepath: "/web_audio_visualizer",
+                            basepath: "",
                             location: o,
                             id: "gatsby-focus-wrapper",
                           },
@@ -3222,10 +3220,7 @@
                               {
                                 path:
                                   "/404.html" === r.page.path
-                                    ? Object(I.a)(
-                                        o.pathname,
-                                        "/web_audio_visualizer"
-                                      )
+                                    ? Object(I.a)(o.pathname, "")
                                     : encodeURI(
                                         r.page.matchPath || r.page.path
                                       ),
@@ -3247,19 +3242,14 @@
             a = o.pagePath,
             l = o.location;
           a &&
-            "/web_audio_visualizer" + a !== l.pathname &&
+            "" + a !== l.pathname &&
             !(
-              A.findMatchPath(
-                Object(I.a)(l.pathname, "/web_audio_visualizer")
-              ) ||
+              A.findMatchPath(Object(I.a)(l.pathname, "")) ||
               "/404.html" === a ||
               a.match(/^\/404\/?$/) ||
               a.match(/^\/offline-plugin-app-shell-fallback\/?$/)
             ) &&
-            Object(c.navigate)(
-              "/web_audio_visualizer" + a + l.search + l.hash,
-              { replace: !0 }
-            ),
+            Object(c.navigate)("" + a + l.search + l.hash, { replace: !0 }),
             p.publicLoader.loadPage(l.pathname).then(function (t) {
               if (!t || t.status === p.PageResourceStatus.Error)
                 throw new Error(
@@ -3343,12 +3333,12 @@
               b = r(u, d, 3),
               w = a(y.length),
               P = 0,
-              _ = n ? h(e, w) : c ? h(e, 0) : void 0;
+              x = n ? h(e, w) : c ? h(e, 0) : void 0;
             w > P;
             P++
           )
             if ((p || P in y) && ((g = b((v = y[P]), P, m)), t))
-              if (n) _[P] = g;
+              if (n) x[P] = g;
               else if (g)
                 switch (t) {
                   case 3:
@@ -3358,10 +3348,10 @@
                   case 6:
                     return P;
                   case 2:
-                    _.push(v);
+                    x.push(v);
                 }
               else if (l) return !1;
-          return f ? -1 : s || l ? l : _;
+          return f ? -1 : s || l ? l : x;
         };
       };
     },
@@ -3663,7 +3653,7 @@
           return U;
         }),
         n.d(e, "Router", function () {
-          return x;
+          return S;
         }),
         n.d(e, "ServerLocation", function () {
           return P;
@@ -3687,7 +3677,7 @@
           return K;
         }),
         n.d(e, "BaseContext", function () {
-          return _;
+          return x;
         });
       n("AqHK"),
         n("sC2a"),
@@ -3861,15 +3851,15 @@
             )
           );
         },
-        _ = m("Base", { baseuri: "/", basepath: "/" }),
-        x = function (t) {
-          return o.a.createElement(_.Consumer, null, function (e) {
+        x = m("Base", { baseuri: "/", basepath: "/" }),
+        S = function (t) {
+          return o.a.createElement(x.Consumer, null, function (e) {
             return o.a.createElement(b, null, function (n) {
-              return o.a.createElement(S, p({}, e, n, t));
+              return o.a.createElement(_, p({}, e, n, t));
             });
           });
         },
-        S = (function (t) {
+        _ = (function (t) {
           function e() {
             return d(this, e), v(this, t.apply(this, arguments));
           }
@@ -3894,7 +3884,7 @@
                   "component",
                 ]),
                 f = o.a.Children.toArray(a).reduce(function (t, e) {
-                  var n = H(r)(e);
+                  var n = Y(r)(e);
                   return t.concat(n);
                 }, []),
                 d = e.pathname,
@@ -3917,18 +3907,18 @@
                     w,
                     b.props.children
                       ? o.a.createElement(
-                          x,
+                          S,
                           { location: e, primary: i },
                           b.props.children
                         )
                       : void 0
                   ),
-                  S = i ? E : c,
+                  _ = i ? E : c,
                   O = i ? p({ uri: m, location: e, component: c }, s) : s;
                 return o.a.createElement(
-                  _.Provider,
+                  x.Provider,
                   { value: { baseuri: m, basepath: r } },
-                  o.a.createElement(S, O, P)
+                  o.a.createElement(_, O, P)
                 );
               }
               return null;
@@ -3936,7 +3926,7 @@
             e
           );
         })(o.a.PureComponent);
-      S.defaultProps = { primary: !0 };
+      _.defaultProps = { primary: !0 };
       var O = m("Focus"),
         E = function (t) {
           var e = t.uri,
@@ -4047,7 +4037,7 @@
       var I = L(function (t, e) {
         var n = t.innerRef,
           r = h(t, ["innerRef"]);
-        return o.a.createElement(_.Consumer, null, function (t) {
+        return o.a.createElement(x.Consumer, null, function (t) {
           t.basepath;
           var i = t.baseuri;
           return o.a.createElement(b, null, function (t) {
@@ -4077,7 +4067,7 @@
                 {
                   href: m,
                   onClick: function (t) {
-                    if ((g.onClick && g.onClick(t), Y(t))) {
+                    if ((g.onClick && g.onClick(t), B(t))) {
                       t.preventDefault();
                       var e = f;
                       if ("boolean" != typeof f && b) {
@@ -4153,7 +4143,7 @@
           );
         })(o.a.Component),
         U = function (t) {
-          return o.a.createElement(_.Consumer, null, function (e) {
+          return o.a.createElement(x.Consumer, null, function (e) {
             var n = e.baseuri;
             return o.a.createElement(b, null, function (e) {
               return o.a.createElement(D, p({}, e, { baseuri: n }, t));
@@ -4163,7 +4153,7 @@
         F = function (t) {
           var e = t.path,
             n = t.children;
-          return o.a.createElement(_.Consumer, null, function (t) {
+          return o.a.createElement(x.Consumer, null, function (t) {
             var r = t.baseuri;
             return o.a.createElement(b, null, function (t) {
               var o = t.navigate,
@@ -4195,7 +4185,7 @@
           return t.navigate;
         },
         W = function () {
-          var t = Object(r.useContext)(_);
+          var t = Object(r.useContext)(x);
           if (!t)
             throw new Error(
               "useParams hook was used but a LocationContext.Provider was not found in the parent tree. Make sure this is used in a component that is a child of Router"
@@ -4209,7 +4199,7 @@
             throw new Error(
               "useMatch(path: string) requires an argument of a string to match against"
             );
-          var e = Object(r.useContext)(_);
+          var e = Object(r.useContext)(x);
           if (!e)
             throw new Error(
               "useMatch hook was used but a LocationContext.Provider was not found in the parent tree. Make sure this is used in a component that is a child of Router"
@@ -4219,10 +4209,10 @@
             i = Object(l.match)(o, n.pathname);
           return i ? p({}, i.params, { uri: i.uri, path: t }) : null;
         },
-        z = function (t) {
+        H = function (t) {
           return t.replace(/(^\/+|\/+$)/g, "");
         },
-        H = function t(e) {
+        Y = function t(e) {
           return function (n) {
             if (!n) return null;
             if (n.type === o.a.Fragment && n.props.children)
@@ -4237,15 +4227,15 @@
             )
               return { value: n, default: !0 };
             var r = n.type === U ? n.props.from : n.props.path,
-              i = "/" === r ? e : z(e) + "/" + z(r);
+              i = "/" === r ? e : H(e) + "/" + H(r);
             return {
               value: n,
               default: n.props.default,
-              path: n.props.children ? z(i) + "/*" : i,
+              path: n.props.children ? H(i) + "/*" : i,
             };
           };
         },
-        Y = function (t) {
+        B = function (t) {
           return (
             !t.defaultPrevented &&
             0 === t.button &&
@@ -4286,41 +4276,41 @@
               return new n(this, t);
             };
           },
-          _ = e + " Iterator",
-          x = "values" == v,
-          S = !1,
+          x = e + " Iterator",
+          S = "values" == v,
+          _ = !1,
           O = t.prototype,
           E = O[f] || O["@@iterator"] || (v && O[v]),
           j = E || P(v),
-          R = v ? (x ? P("entries") : j) : void 0,
+          R = v ? (S ? P("entries") : j) : void 0,
           k = ("Array" == e && O.entries) || E;
         if (
           (k &&
             (w = l(k.call(new t()))) !== Object.prototype &&
             w.next &&
-            (s(w, _, !0), r || "function" == typeof w[f] || a(w, f, h)),
-          x &&
+            (s(w, x, !0), r || "function" == typeof w[f] || a(w, f, h)),
+          S &&
             E &&
             "values" !== E.name &&
-            ((S = !0),
+            ((_ = !0),
             (j = function () {
               return E.call(this);
             })),
-          (r && !m) || (!p && !S && O[f]) || a(O, f, j),
+          (r && !m) || (!p && !_ && O[f]) || a(O, f, j),
           (u[e] = j),
-          (u[_] = h),
+          (u[x] = h),
           v)
         )
           if (
             ((y = {
-              values: x ? j : P("values"),
+              values: S ? j : P("values"),
               keys: g ? j : P("keys"),
               entries: R,
             }),
             m)
           )
             for (b in y) b in O || i(O, b, y[b]);
-          else o(o.P + o.F * (p || S), e, y);
+          else o(o.P + o.F * (p || _), e, y);
         return y;
       };
     },
@@ -4497,7 +4487,7 @@
       "use strict";
       n.r(e),
         n.d(e, "PageResourceStatus", function () {
-          return _;
+          return x;
         }),
         n.d(e, "BaseLoader", function () {
           return R;
@@ -4631,9 +4621,7 @@
         h = [],
         d = function (t) {
           var e = decodeURIComponent(t);
-          return Object(c.a)(e, "/web_audio_visualizer")
-            .split("#")[0]
-            .split("?")[0];
+          return Object(c.a)(e, "").split("#")[0].split("?")[0];
         };
       function v(t) {
         return t.startsWith("/") ||
@@ -4699,14 +4687,14 @@
         return r;
       }
       var P,
-        _ = { Error: "error", Success: "success" },
-        x = function (t) {
+        x = { Error: "error", Success: "success" },
+        S = function (t) {
           return (t && t.default) || t;
         },
-        S = function (t) {
+        _ = function (t) {
           var e;
           return (
-            "/web_audio_visualizer/page-data/" +
+            "/page-data/" +
             ("/" === t
               ? "index"
               : (e = (e = "/" === (e = t)[0] ? e.slice(1) : e).endsWith("/")
@@ -4732,7 +4720,7 @@
           var e = t.pagePath,
             n = t.retries,
             r = void 0 === n ? 0 : n,
-            o = S(e);
+            o = _(e);
           return O(o).then(function (n) {
             var o = n.status,
               i = n.responseText;
@@ -4741,17 +4729,17 @@
                 var a = JSON.parse(i);
                 if (void 0 === a.path)
                   throw new Error("not a valid pageData response");
-                return Object.assign(t, { status: _.Success, payload: a });
+                return Object.assign(t, { status: x.Success, payload: a });
               } catch (u) {}
             return 404 === o || 200 === o
               ? "/404.html" === e
-                ? Object.assign(t, { status: _.Error })
+                ? Object.assign(t, { status: x.Error })
                 : E(Object.assign(t, { pagePath: "/404.html", notFound: !0 }))
               : 500 === o
-              ? Object.assign(t, { status: _.Error })
+              ? Object.assign(t, { status: x.Error })
               : r < 3
               ? E(Object.assign(t, { retries: r + 1 }))
-              : Object.assign(t, { status: _.Error });
+              : Object.assign(t, { status: x.Error });
           });
         },
         j = function (t, e) {
@@ -4810,7 +4798,7 @@
               ])
                 .then(function (t) {
                   var r = t[1];
-                  if (r.status === _.Error) return { status: _.Error };
+                  if (r.status === x.Error) return { status: x.Error };
                   var o = r.payload,
                     i = o.componentChunkName;
                   return e.loadComponent(i).then(function (i) {
@@ -4818,7 +4806,7 @@
                       c = { createdAt: new Date() };
                     return (
                       i
-                        ? ((c.status = _.Success),
+                        ? ((c.status = x.Success),
                           !0 === r.notFound && (c.notFound = !0),
                           (o = Object.assign(o, {
                             webpackCompilationHash: t[0]
@@ -4831,7 +4819,7 @@
                             page: u,
                             pageResources: u,
                           }))
-                        : (c.status = _.Error),
+                        : (c.status = x.Error),
                       e.pageDb.set(n, c),
                       u
                     );
@@ -4897,7 +4885,7 @@
                 n = this.pageDataDb.get(e);
               if (n) {
                 var r = j(n.payload);
-                return [].concat(b(k(r.page.componentChunkName)), [S(e)]);
+                return [].concat(b(k(r.page.componentChunkName)), [_(e)]);
               }
               return null;
             }),
@@ -4910,22 +4898,20 @@
               var e = this;
               return (
                 void 0 === t && (t = 0),
-                O("/web_audio_visualizer/page-data/app-data.json").then(
-                  function (n) {
-                    var r,
-                      o = n.status,
-                      i = n.responseText;
-                    if (200 !== o && t < 3) return e.loadAppData(t + 1);
-                    if (200 === o)
-                      try {
-                        var a = JSON.parse(i);
-                        if (void 0 === a.webpackCompilationHash)
-                          throw new Error("not a valid app-data response");
-                        r = a;
-                      } catch (u) {}
-                    return r;
-                  }
-                )
+                O("/page-data/app-data.json").then(function (n) {
+                  var r,
+                    o = n.status,
+                    i = n.responseText;
+                  if (200 !== o && t < 3) return e.loadAppData(t + 1);
+                  if (200 === o)
+                    try {
+                      var a = JSON.parse(i);
+                      if (void 0 === a.webpackCompilationHash)
+                        throw new Error("not a valid app-data response");
+                      r = a;
+                    } catch (u) {}
+                  return r;
+                })
               );
             }),
             t
@@ -4933,7 +4919,7 @@
         })(),
         k = function (t) {
           return (window.___chunkMapping[t] || []).map(function (t) {
-            return "/web_audio_visualizer" + t;
+            return "" + t;
           });
         },
         C = (function (t) {
@@ -4945,7 +4931,7 @@
                 function (t) {
                   return e.components[t]
                     ? e.components[t]()
-                        .then(x)
+                        .then(S)
                         .catch(function () {
                           return null;
                         })
@@ -4963,13 +4949,13 @@
           return (
             (o.doPrefetch = function (t) {
               var e = this,
-                n = S(t);
+                n = _(t);
               return i(n, { crossOrigin: "anonymous", as: "fetch" })
                 .then(function () {
                   return e.loadPageDataJson(t);
                 })
                 .then(function (t) {
-                  if (t.status !== _.Success) return Promise.resolve();
+                  if (t.status !== x.Success) return Promise.resolve();
                   var e = t.payload,
                     n = e.componentChunkName,
                     r = k(n);
@@ -4984,7 +4970,7 @@
                 .then(function (t) {
                   return t.notFound
                     ? O(e, "HEAD").then(function (e) {
-                        return 200 === e.status ? { status: _.Error } : t;
+                        return 200 === e.status ? { status: x.Error } : t;
                       })
                     : t;
                 });
@@ -5711,10 +5697,10 @@
               if ((y.push(b), !g)) break;
               "" === String(b[0]) && (f.lastIndex = u(p, i(f.lastIndex), m));
             }
-            for (var w, P = "", _ = 0, x = 0; x < y.length; x++) {
-              b = y[x];
+            for (var w, P = "", x = 0, S = 0; S < y.length; S++) {
+              b = y[S];
               for (
-                var S = String(b[0]),
+                var _ = String(b[0]),
                   O = s(l(a(b.index), p.length), 0),
                   E = [],
                   j = 1;
@@ -5724,13 +5710,13 @@
                 E.push(void 0 === (w = b[j]) ? w : String(w));
               var R = b.groups;
               if (h) {
-                var k = [S].concat(E, O, p);
+                var k = [_].concat(E, O, p);
                 void 0 !== R && k.push(R);
                 var C = String(e.apply(void 0, k));
-              } else C = v(S, p, O, E, R, e);
-              O >= _ && ((P += p.slice(_, O) + C), (_ = O + S.length));
+              } else C = v(_, p, O, E, R, e);
+              O >= x && ((P += p.slice(x, O) + C), (x = O + _.length));
             }
-            return P + p.slice(_);
+            return P + p.slice(x);
           },
         ];
         function v(t, e, r, i, a, u) {
@@ -6108,4 +6094,4 @@
   },
   [["UxWs", 9, 7]],
 ]);
-//# sourceMappingURL=app-a7fc9dd011e775f6896a.js.map
+//# sourceMappingURL=app-b425b8de3ac5cb529955.js.map

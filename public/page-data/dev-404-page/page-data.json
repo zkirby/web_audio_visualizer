@@ -1,17 +1,1 @@
-{
-  "componentChunkName": "component---cache-dev-404-page-js",
-  "path": "/dev-404-page/",
-  "result": {
-    "data": {
-      "allSitePage": {
-        "nodes": [
-          { "path": "/Error/" },
-          { "path": "/Home/" },
-          { "path": "/" },
-          { "path": "/platform/" }
-        ]
-      }
-    },
-    "pageContext": {}
-  }
-}
+{"componentChunkName":"component---cache-dev-404-page-js","path":"/dev-404-page/","result":{"data":{"allSitePage":{"nodes":[{"path":"/Error/"},{"path":"/Home/"},{"path":"/"},{"path":"/Playground/"},{"path":"/playground/"}]}},"pageContext":{}}}

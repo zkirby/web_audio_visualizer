@@ -10,6 +10,7 @@ Next:
 - [ ] Be able to remove links
 - [ ] Refactor now that nodes are used instead of nodeKeys
 - [ ] Home screen styling
+- [ ] fix links not refreshing on child node move
 - [x] Home screen
 - [x] Default configs
 - [x] Deploy initial stuff

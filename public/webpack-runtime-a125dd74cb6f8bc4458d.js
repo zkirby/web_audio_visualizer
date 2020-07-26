@@ -206,7 +206,7 @@
     (s.o = function (e, t) {
       return Object.prototype.hasOwnProperty.call(e, t);
     }),
-    (s.p = "/web_audio_visualizer/"),
+    (s.p = "/"),
     (s.oe = function (e) {
       throw (console.error(e), e);
     });
@@ -217,4 +217,4 @@
   var i = u;
   r();
 })([]);
-//# sourceMappingURL=webpack-runtime-bd8d8881a3fe476c9b15.js.map
+//# sourceMappingURL=webpack-runtime-a125dd74cb6f8bc4458d.js.map

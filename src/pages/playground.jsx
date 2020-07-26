@@ -1,7 +1,7 @@
 import React from "react";
 import Graph from "../components/Graph";
 import Node from "../utils/nodes";
-import { Link } from "react-router-dom";
+import { Link } from "gatsby";
 import { noProp, nodeTypes, nameToNode } from "../utils/utils.js";
 
 import Menu from "../components/Menu";
@@ -200,7 +200,7 @@ export default class Platform extends React.Component {
           <span onClick={this.clearAll}> clear </span>
           <span onClick={() => console.log("playing")}> play </span>
           <span>
-            <Link to={{ pathname: "/" }}>home</Link>
+            <Link to="/">home</Link>
           </span>
         </div>
         {Object.entries(this.state.activeGraphs).map(([key, nodes]) => (
