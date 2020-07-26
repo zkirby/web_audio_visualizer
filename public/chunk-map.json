@@ -1,12 +1,1 @@
-{
-  "app": ["/app-fc656ee04cd58830d3be.js"],
-  "component---src-pages-error-jsx": [
-    "/component---src-pages-error-jsx-39ab3ad2348524f60b12.js"
-  ],
-  "component---src-pages-index-js": [
-    "/component---src-pages-index-js-3508fe0086506fe6ed8e.js"
-  ],
-  "component---src-pages-platform-jsx": [
-    "/component---src-pages-platform-jsx-721941b4223a9b58d697.js"
-  ]
-}
+{"app":["/app-a7fc9dd011e775f6896a.js"],"component---src-pages-error-jsx":["/component---src-pages-error-jsx-8e1c86d92210564eee7b.js"],"component---src-pages-home-jsx":["/component---src-pages-home-jsx-fddf059d1d71c0285086.js"],"component---src-pages-index-js":["/component---src-pages-index-js-d3d007704b2cb4e3bd28.js"],"component---src-pages-platform-jsx":["/component---src-pages-platform-jsx-ec974f041b6e90c234b6.js"]}

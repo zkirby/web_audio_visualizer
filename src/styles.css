@@ -95,6 +95,10 @@
   color: blue;
 }
 
+.node-overlay-bottom > .info {
+  color: yellowgreen;
+}
+
 /* Nodes */
 .destination, .source, .filter {
   position: relative;

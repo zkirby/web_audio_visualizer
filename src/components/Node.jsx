@@ -103,6 +103,11 @@ export default class Node extends React.Component {
               >
                 <FontAwesomeIcon icon="arrows-alt" />
               </div>
+              <div
+                className="info"
+              >
+                <FontAwesomeIcon icon="question-circle" />
+              </div>
             </div>
           </div>
           <node.nodeType

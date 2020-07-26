@@ -8,7 +8,7 @@ import StereoPanner from "../components/Filters/StereoPanner";
 export const nodeTypes = {
   Sources: {
     Oscillator,
-    ConstantSource,
+    "Constant Source": ConstantSource,
   },
   Destinations: {
     Speakers,
@@ -16,8 +16,16 @@ export const nodeTypes = {
   Filters: {
     Gain,
     Delay,
-    StereoPanner,
+    "Stereo Panner": StereoPanner,
   },
+};
+export const nameToNode = {
+  Oscillator,
+  ConstantSource,
+  Speakers,
+  Gain,
+  Delay,
+  StereoPanner,
 };
 
 export const noProp = (fn) => (e) => {

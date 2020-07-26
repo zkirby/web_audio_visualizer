@@ -1,7 +1,8 @@
 import React from "react";
 import Graph from "../components/Graph";
 import Node from "../utils/nodes";
-import { noProp, nodeTypes } from "../utils/utils.js";
+import { Link } from "react-router-dom";
+import { noProp, nodeTypes, nameToNode } from "../utils/utils.js";
 
 import Menu from "../components/Menu";
 
@@ -14,6 +15,58 @@ let graphNum = 0;
 let nodeNum = 0;
 export default class Platform extends React.Component {
   state = defaultState;
+
+  componentDidMount() {
+    // Seed active graphs with a config
+    /** Config layout:
+     *  { nodes: {
+     *     [coords]: { links: [coords,] options: {}, type: String }
+     *  } }
+     */
+    if (!this.props.location?.state?.config) {
+      return;
+    }
+    const { nodes } = JSON.parse(this.props.location?.state?.config);
+    const allNodes = Object.entries(nodes).map(
+      ([coords, { options, links, type }]) => {
+        const n = new Node(coords, nameToNode[type], nodeNum++);
+        n.options = options || {};
+        n._loadingLinks = links || [];
+        return n;
+      }
+    );
+
+    // Build the graphs
+    const graphs = {};
+    while (allNodes.length) {
+      const node = allNodes[0];
+      const key = this.getGraphKey(node.coords);
+      graphs[key] = [node];
+      const v = new Set();
+      const q = [node];
+
+      while (q.length) {
+        const c = q.pop();
+        if (!v.has(c.coords)) {
+          v.add(c.coords);
+          allNodes.splice(allNodes.indexOf(c), 1);
+          for (const link of c._loadingLinks) {
+            const linkedNode = allNodes.find((n) => n.coords === link);
+            c.addLink(linkedNode);
+            linkedNode.addLink(c);
+            graphs[key].push(linkedNode);
+            linkedNode._loadingLinks.splice(
+              linkedNode._loadingLinks.indexOf(c.coords),
+              1
+            );
+            q.push(linkedNode);
+          }
+        }
+      }
+    }
+
+    this.setState({ activeGraphs: graphs });
+  }
 
   /** Add a new graph to the platform */
   addNewGraph = ({ pageY, pageX }) => {
@@ -146,6 +199,9 @@ export default class Platform extends React.Component {
           />
           <span onClick={this.clearAll}> clear </span>
           <span onClick={() => console.log("playing")}> play </span>
+          <span>
+            <Link to={{ pathname: "/" }}>home</Link>
+          </span>
         </div>
         {Object.entries(this.state.activeGraphs).map(([key, nodes]) => (
           <Graph

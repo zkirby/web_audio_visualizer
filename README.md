@@ -2,7 +2,6 @@ Next:
 
 - [ ] Allow for nodes to be moved (current doesn't work for connected nodes)
 - [ ] Reuse of nodes
-- [ ] Default configs
 - [ ] Can save current config
 - [ ] Global play option
 - [ ] Redo all of the styling
@@ -10,6 +9,9 @@ Next:
 - [ ] Prevent bad connections (source to source, sink to sink, etc)
 - [ ] Be able to remove links
 - [ ] Refactor now that nodes are used instead of nodeKeys
+- [ ] Home screen styling
+- [x] Home screen
+- [x] Default configs
 - [x] Deploy initial stuff
 - [x] Nodal editing
 - [x] Allow sound to travel through the nodes
