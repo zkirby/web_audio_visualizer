@@ -9,7 +9,16 @@ export default class Node extends React.Component {
     editOpen: false,
     moveLeft: undefined,
     moveTop: undefined,
+    moveInProgress: false,
   };
+
+  componentDidMount() {
+    document.addEventListener("mousemove", this.updateMoves.bind(this));
+  }
+  
+  componentWillUnmount() {
+    document.removeEventListener("mousemove", this.updateMoves);
+  }
 
   toggleEdit = () => {
     this.setState(({ editOpen }) => ({ editOpen: !editOpen }));
@@ -20,24 +29,22 @@ export default class Node extends React.Component {
   };
 
   updateMoves = ({ pageY, pageX }) => {
-    this.setState({ moveLeft: pageX, moveTop: pageY });
+    this.state.moveInProgress && this.setState({ moveLeft: pageX, moveTop: pageY });
   };
 
   initiateMove = ({ pageY, pageX }) => {
-    document.addEventListener("mousemove", this.updateMoves.bind(this));
 
     // This is so the node will jump right to the mouse without
     // the first mousemove event
     this.props.node.updateCoords(pageY, pageX);
-    this.setState({ moveLeft: pageY, moveTop: pageX });
+    this.setState({ moveLeft: pageY, moveTop: pageX, moveInProgress: true });
   };
 
   stopMove = () => {
     const { moveLeft, moveTop } = this.state;
     if (moveLeft || moveTop) {
-      document.removeEventListener("mousemove", this.updateMoves);
       this.props.node.updateCoords(moveTop, moveLeft);
-      this.setState({ moveLeft: undefined, moveTop: undefined });
+      this.setState({ moveInProgress: false, moveLeft: undefined, moveTop: undefined });
     }
   };
 

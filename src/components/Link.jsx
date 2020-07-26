@@ -1,10 +1,6 @@
 import React from "react";
 
 export default class Link extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const [y1, x1] = this.props.link1.split(",");
     const [y2, x2] = this.props.link2.split(",");
