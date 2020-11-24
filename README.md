@@ -1,6 +1,4 @@
 Next:
-
-- [ ] Allow for nodes to be moved (current doesn't work for connected nodes)
 - [ ] Reuse of nodes
 - [ ] Can save current config
 - [ ] Global play option
@@ -10,12 +8,3 @@ Next:
 - [ ] Be able to remove links
 - [ ] Refactor now that nodes are used instead of nodeKeys
 - [ ] Home screen styling
-- [ ] fix links not refreshing on child node move
-- [x] Home screen
-- [x] Default configs
-- [x] Deploy initial stuff
-- [x] Nodal editing
-- [x] Allow sound to travel through the nodes
-- [x] Figure out how to add nodes
-- [x] Need to convert graphs and nodes into react components.
-- [x] Delete the graph and nodes files
