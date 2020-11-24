@@ -8,3 +8,6 @@ Next:
 - [ ] Be able to remove links
 - [ ] Refactor now that nodes are used instead of nodeKeys
 - [ ] Home screen styling
+
+Resources:
+- file:///Users/ARK/Desktop/The_video_keyboard
