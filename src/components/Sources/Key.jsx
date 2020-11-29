@@ -9,27 +9,32 @@ export default class Key extends React.Component {
   gainNode = {};
 
   constructor(props) {
+    super(props);
+    
     this.state = {
+      frequency: props.node.options.frequency || 440,
       playing: false,
       isAlive: false,
     };
   }
 
-  
-
   componentDidMount() {
     try {
       this.audio = new (window.AudioContext || window.webkitAudioContext)();
+      const sineTerms = new Float32Array([0, 0, 1, 0, 1]);
+      const cosineTerms = new Float32Array(sineTerms.length);
+      const customWaveform = this.audio.createPeriodicWave(cosineTerms, sineTerms);
+
       this.oscillator = this.audio.createOscillator();
+      this.oscillator.setPeriodicWave(customWaveform)
       this.updateOscillator(this.state.frequency, "frequency");
-      this.updateOscillator(this.state.detune, "detune");
-      this.updateOscillator(this.state.type, "type");
       this.gainNode = this.audio.createGain();
 
       this.oscillator.connect(this.gainNode);
       this.props.updateParent(this.gainNode);
-    } catch {
-      throw new Error("Could not connect Oscillator");
+    } catch (e) {
+      console.log(e)
+      throw new Error("Could not connect Key");
     }
   }
 
@@ -67,17 +72,11 @@ export default class Key extends React.Component {
       case "frequency":
         this.oscillator.frequency.setValueAtTime(value, this.audio.currentTime);
         break;
-      case "detune":
-        this.oscillator.detune.setValueAtTime(value, this.audio.currentTime);
-        break;
-      case "type":
-        this.oscillator.type = value;
-        break;
     }
   }
 
   render() {
-    const { frequency, type, detune } = this.state;
+    const {  frequency } = this.state;
     return (
       <>
         {this.props.editOpen && (
@@ -89,31 +88,12 @@ export default class Key extends React.Component {
               X
             </div>
             <div onClick={noProp(() => {})}>
-              <label>
-                frequency:{" "}
-                <input
-                  type="number"
-                  value={frequency}
-                  onChange={(e) => this.updateEditAttr(e, "frequency")}
-                />
-              </label>
-              <label>
-                detune:{" "}
-                <input
-                  type="number"
-                  value={detune}
-                  onChange={(e) => this.updateEditAttr(e, "detune")}
-                />
-              </label>
               <select
-                value={type}
-                onChange={(e) => this.updateEditAttr(e, "type")}
-                name="type"
+                value={frequency}
+                onChange={(e) => this.updateEditAttr(e, "frequency")}
+                name="frequency"
               >
-                <option value="sine">Sine</option>
-                <option value="square">Square</option>
-                <option value="sawtooth">Sawtooth</option>
-                <option value="triangle">Triangle</option>
+                { Object.entries(notes).map(([note, freq]) => <option key={note} value={freq}>{note}</option>)}
               </select>
             </div>
           </div>
