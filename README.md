@@ -1,6 +1,6 @@
 MVP:
 
-- [] Make a semi-nice looking landing page
+- [ ] Make a semi-nice looking landing page
 
 TODO:
 
