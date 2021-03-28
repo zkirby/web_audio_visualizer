@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Audio.play`,
+    description: `Explore the Mozilla web audio API through this interactive playground`,
+    author: `@zkirby`,
   },
   pathPrefix: "/web_audio_visualizer",
   plugins: [
@@ -16,6 +16,13 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`Raleway`],
+        display: "swap",
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

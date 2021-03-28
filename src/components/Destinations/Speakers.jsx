@@ -5,7 +5,7 @@ export default class Speakers extends React.Component {
     try {
       if (this.props.parent) {
         this.props.parent.connect(this.props.parent.context.destination);
-        this.props.updateParent({ info: 'Speaker Node Reached' })
+        this.props.updateParent({ info: "Speaker Node Reached" });
       }
     } catch {
       throw new Error("Could not connect to Speakers");

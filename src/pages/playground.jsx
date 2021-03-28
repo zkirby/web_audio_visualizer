@@ -198,7 +198,6 @@ export default class Platform extends React.Component {
             selectedNodeRootType={this.state.selectedNodeRootType}
           />
           <span onClick={this.clearAll}> clear </span>
-          <span onClick={() => console.log("playing")}> play </span>
           <span>
             <Link to="/">home</Link>
           </span>

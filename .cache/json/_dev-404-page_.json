@@ -1,0 +1,6 @@
+{
+  "data": {
+    "allSitePage": { "nodes": [{ "path": "/" }, { "path": "/playground/" }] }
+  },
+  "pageContext": {}
+}

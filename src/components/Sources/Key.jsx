@@ -1,7 +1,6 @@
 import React from "react";
 import { noProp } from "../../utils/utils";
-import notes from '../../utils/notes';
-
+import notes from "../../utils/notes";
 
 export default class Key extends React.Component {
   audio = {};
@@ -10,7 +9,7 @@ export default class Key extends React.Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       frequency: props.node.options.frequency || 440,
       playing: false,
@@ -23,17 +22,20 @@ export default class Key extends React.Component {
       this.audio = new (window.AudioContext || window.webkitAudioContext)();
       const sineTerms = new Float32Array([0, 0, 1, 0, 1]);
       const cosineTerms = new Float32Array(sineTerms.length);
-      const customWaveform = this.audio.createPeriodicWave(cosineTerms, sineTerms);
+      const customWaveform = this.audio.createPeriodicWave(
+        cosineTerms,
+        sineTerms
+      );
 
       this.oscillator = this.audio.createOscillator();
-      this.oscillator.setPeriodicWave(customWaveform)
+      this.oscillator.setPeriodicWave(customWaveform);
       this.updateOscillator(this.state.frequency, "frequency");
       this.gainNode = this.audio.createGain();
 
       this.oscillator.connect(this.gainNode);
       this.props.updateParent(this.gainNode);
     } catch (e) {
-      console.log(e)
+      console.log(e);
       throw new Error("Could not connect Key");
     }
   }
@@ -76,7 +78,7 @@ export default class Key extends React.Component {
   }
 
   render() {
-    const {  frequency } = this.state;
+    const { frequency } = this.state;
     return (
       <>
         {this.props.editOpen && (
@@ -93,7 +95,11 @@ export default class Key extends React.Component {
                 onChange={(e) => this.updateEditAttr(e, "frequency")}
                 name="frequency"
               >
-                { Object.entries(notes).map(([note, freq]) => <option key={note} value={freq}>{note}</option>)}
+                {Object.entries(notes).map(([note, freq]) => (
+                  <option key={note} value={freq}>
+                    {note}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

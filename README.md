@@ -1,4 +1,9 @@
-Next:
+MVP:
+
+- [] Make a semi-nice looking landing page
+
+TODO:
+
 - [ ] Reuse of nodes
 - [ ] Can save current config
 - [ ] Global play option
@@ -10,4 +15,6 @@ Next:
 - [ ] Home screen styling
 
 Resources:
-- file:///Users/ARK/Desktop/The_video_keyboard
+
+- color scheme: https://flatuicolors.com/palette/us
+- https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
