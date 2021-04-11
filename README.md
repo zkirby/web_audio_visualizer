@@ -1,7 +1,3 @@
-MVP:
-
-- [ ] Make a semi-nice looking landing page
-
 TODO:
 
 - [ ] Reuse of nodes

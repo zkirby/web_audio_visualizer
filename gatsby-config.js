@@ -4,7 +4,7 @@ module.exports = {
     description: `Explore the Mozilla web audio API through this interactive playground`,
     author: `@zkirby`,
   },
-  pathPrefix: "/audio_play",
+  pathPrefix: "/web_audio_visualizer",
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
