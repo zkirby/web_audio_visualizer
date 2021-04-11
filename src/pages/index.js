@@ -1,6 +1,7 @@
 import React from "react";
 import Error from "../components/Error";
 import { Link } from "gatsby";
+import { Helmet } from "react-helmet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -25,6 +26,10 @@ library.add(
 );
 const Index = () => (
   <div className="main-container">
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>audio.play</title>
+    </Helmet>
     <Error >
       <div className="play-container">
         <h2>Audio.play</h2>

@@ -26,10 +26,7 @@ var _matchPaths = _interopRequireDefault(require("./match-paths.json"));
 
 // Generated during bootstrap
 window.___emitter = _emitter.default;
-const loader = new _devLoader.default(
-  _syncRequires.default,
-  _matchPaths.default
-);
+const loader = new _devLoader.default(_syncRequires.default, _matchPaths.default);
 (0, _loader.setLoader)(loader);
 loader.setApiRunner(_apiRunnerBrowser.apiRunner);
 window.___loader = _loader.publicLoader; // Let the site/plugins run code very early.
@@ -44,30 +41,22 @@ window.___loader = _loader.publicLoader; // Let the site/plugins run code very e
     });
   }
 
-  fetch(`/___services`)
-    .then((res) => res.json())
-    .then((services) => {
-      if (services.developstatusserver) {
-        const parentSocket = (0, _socket.default)(
-          `http://${window.location.hostname}:${services.developstatusserver.port}`
-        );
-        parentSocket.on(`develop:needs-restart`, (msg) => {
-          if (
-            window.confirm(
-              `The develop process needs to be restarted for the changes to ${msg.dirtyFile} to be applied.\nDo you want to restart the develop process now?`
-            )
-          ) {
-            parentSocket.once(`develop:is-starting`, (msg) => {
-              window.location.reload();
-            });
-            parentSocket.once(`develop:started`, (msg) => {
-              window.location.reload();
-            });
-            parentSocket.emit(`develop:restart`);
-          }
-        });
-      }
-    });
+  fetch(`/___services`).then(res => res.json()).then(services => {
+    if (services.developstatusserver) {
+      const parentSocket = (0, _socket.default)(`http://${window.location.hostname}:${services.developstatusserver.port}`);
+      parentSocket.on(`develop:needs-restart`, msg => {
+        if (window.confirm(`The develop process needs to be restarted for the changes to ${msg.dirtyFile} to be applied.\nDo you want to restart the develop process now?`)) {
+          parentSocket.once(`develop:is-starting`, msg => {
+            window.location.reload();
+          });
+          parentSocket.once(`develop:started`, msg => {
+            window.location.reload();
+          });
+          parentSocket.emit(`develop:restart`);
+        }
+      });
+    }
+  });
   /**
    * Service Workers are persistent by nature. They stick around,
    * serving a cached version of the site if they aren't removed.
@@ -78,38 +67,21 @@ window.___loader = _loader.publicLoader; // Let the site/plugins run code very e
    */
 
   if (`serviceWorker` in navigator) {
-    navigator.serviceWorker.getRegistrations().then((registrations) => {
-      if (registrations.length > 0)
-        console.warn(
-          `Warning: found one or more service workers present.`,
-          `If your site isn't behaving as expected, you might want to remove these.`,
-          registrations
-        );
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+      if (registrations.length > 0) console.warn(`Warning: found one or more service workers present.`, `If your site isn't behaving as expected, you might want to remove these.`, registrations);
     });
   }
 
   const rootElement = document.getElementById(`___gatsby`);
-  const renderer = (0, _apiRunnerBrowser.apiRunner)(
-    `replaceHydrateFunction`,
-    undefined,
-    _reactDom.default.render
-  )[0];
-  Promise.all([
-    loader.loadPage(`/dev-404-page/`),
-    loader.loadPage(`/404.html`),
-    loader.loadPage(window.location.pathname),
-  ]).then(() => {
-    const preferDefault = (m) => (m && m.default) || m;
+  const renderer = (0, _apiRunnerBrowser.apiRunner)(`replaceHydrateFunction`, undefined, _reactDom.default.render)[0];
+  Promise.all([loader.loadPage(`/dev-404-page/`), loader.loadPage(`/404.html`), loader.loadPage(window.location.pathname)]).then(() => {
+    const preferDefault = m => m && m.default || m;
 
     let Root = preferDefault(require(`./root`));
     (0, _domready.default)(() => {
-      renderer(
-        /*#__PURE__*/ _react.default.createElement(Root, null),
-        rootElement,
-        () => {
-          (0, _apiRunnerBrowser.apiRunner)(`onInitialClientRender`);
-        }
-      );
+      renderer( /*#__PURE__*/_react.default.createElement(Root, null), rootElement, () => {
+        (0, _apiRunnerBrowser.apiRunner)(`onInitialClientRender`);
+      });
     });
   });
 });

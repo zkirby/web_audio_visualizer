@@ -1,6 +1,1 @@
-{
-  "data": {
-    "allSitePage": { "nodes": [{ "path": "/" }, { "path": "/playground/" }] }
-  },
-  "pageContext": {}
-}
+{"data":{"allSitePage":{"nodes":[{"path":"/"},{"path":"/playground/"}]}},"pageContext":{}}

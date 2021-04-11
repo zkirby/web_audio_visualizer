@@ -38,7 +38,7 @@ body,
   max-width: fit-content;
   margin: 0 auto;
   top: 50%;
-  transform: translateY(-10%);
+  transform: translate(-15%, -15%);
   position: relative;
   text-align: center;
 }

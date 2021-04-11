@@ -1,44 +1,44 @@
-import { apiRunner, apiRunnerAsync } from "./api-runner-browser";
-import React from "react";
-import ReactDOM from "react-dom";
-import { Router, navigate, Location, BaseContext } from "@reach/router";
-import { ScrollContext } from "gatsby-react-router-scroll";
-import domReady from "@mikaelkristiansson/domready";
+import { apiRunner, apiRunnerAsync } from "./api-runner-browser"
+import React from "react"
+import ReactDOM from "react-dom"
+import { Router, navigate, Location, BaseContext } from "@reach/router"
+import { ScrollContext } from "gatsby-react-router-scroll"
+import domReady from "@mikaelkristiansson/domready"
 import {
   shouldUpdateScroll,
   init as navigationInit,
   RouteUpdates,
-} from "./navigation";
-import emitter from "./emitter";
-import PageRenderer from "./page-renderer";
-import asyncRequires from "./async-requires";
+} from "./navigation"
+import emitter from "./emitter"
+import PageRenderer from "./page-renderer"
+import asyncRequires from "./async-requires"
 import {
   setLoader,
   ProdLoader,
   publicLoader,
   PageResourceStatus,
-} from "./loader";
-import EnsureResources from "./ensure-resources";
-import stripPrefix from "./strip-prefix";
+} from "./loader"
+import EnsureResources from "./ensure-resources"
+import stripPrefix from "./strip-prefix"
 
 // Generated during bootstrap
-import matchPaths from "./match-paths.json";
+import matchPaths from "./match-paths.json"
 
-const loader = new ProdLoader(asyncRequires, matchPaths);
-setLoader(loader);
-loader.setApiRunner(apiRunner);
+const loader = new ProdLoader(asyncRequires, matchPaths)
+setLoader(loader)
+loader.setApiRunner(apiRunner)
 
-window.asyncRequires = asyncRequires;
-window.___emitter = emitter;
-window.___loader = publicLoader;
+window.asyncRequires = asyncRequires
+window.___emitter = emitter
+window.___loader = publicLoader
 
-navigationInit();
+navigationInit()
 
 apiRunnerAsync(`onClientEntry`).then(() => {
   // Let plugins register a service worker. The plugin just needs
   // to return true.
   if (apiRunner(`registerServiceWorker`).length > 0) {
-    require(`./register-service-worker`);
+    require(`./register-service-worker`)
   }
 
   // In gatsby v2 if Router is used in page using matchPaths
@@ -49,7 +49,7 @@ apiRunnerAsync(`onClientEntry`).then(() => {
   // Resetting `basepath`/`baseuri` keeps current behaviour
   // to not introduce breaking change.
   // Remove this in v3
-  const RouteHandler = (props) => (
+  const RouteHandler = props => (
     <BaseContext.Provider
       value={{
         baseuri: `/`,
@@ -58,11 +58,11 @@ apiRunnerAsync(`onClientEntry`).then(() => {
     >
       <PageRenderer {...props} />
     </BaseContext.Provider>
-  );
+  )
 
   class LocationHandler extends React.Component {
     render() {
-      const { location } = this.props;
+      const { location } = this.props
       return (
         <EnsureResources location={location}>
           {({ pageResources, location }) => (
@@ -95,11 +95,11 @@ apiRunnerAsync(`onClientEntry`).then(() => {
             </RouteUpdates>
           )}
         </EnsureResources>
-      );
+      )
     }
   }
 
-  const { pagePath, location: browserLoc } = window;
+  const { pagePath, location: browserLoc } = window
 
   // Explicitly call navigate if the canonical path (window.pagePath)
   // is different to the browser path (window.location.pathname). But
@@ -120,40 +120,40 @@ apiRunnerAsync(`onClientEntry`).then(() => {
   ) {
     navigate(__BASE_PATH__ + pagePath + browserLoc.search + browserLoc.hash, {
       replace: true,
-    });
+    })
   }
 
-  publicLoader.loadPage(browserLoc.pathname).then((page) => {
+  publicLoader.loadPage(browserLoc.pathname).then(page => {
     if (!page || page.status === PageResourceStatus.Error) {
       throw new Error(
         `page resources for ${browserLoc.pathname} not found. Not rendering React`
-      );
+      )
     }
 
-    window.___webpackCompilationHash = page.page.webpackCompilationHash;
+    window.___webpackCompilationHash = page.page.webpackCompilationHash
 
     const Root = () => (
       <Location>
-        {(locationContext) => <LocationHandler {...locationContext} />}
+        {locationContext => <LocationHandler {...locationContext} />}
       </Location>
-    );
+    )
 
     const WrappedRoot = apiRunner(
       `wrapRootElement`,
       { element: <Root /> },
       <Root />,
       ({ result }) => {
-        return { element: result };
+        return { element: result }
       }
-    ).pop();
+    ).pop()
 
-    const NewRoot = () => WrappedRoot;
+    const NewRoot = () => WrappedRoot
 
     const renderer = apiRunner(
       `replaceHydrateFunction`,
       undefined,
       ReactDOM.hydrate
-    )[0];
+    )[0]
 
     domReady(() => {
       renderer(
@@ -162,9 +162,9 @@ apiRunnerAsync(`onClientEntry`).then(() => {
           ? document.getElementById(`___gatsby`)
           : void 0,
         () => {
-          apiRunner(`onInitialClientRender`);
+          apiRunner(`onInitialClientRender`)
         }
-      );
-    });
-  });
-});
+      )
+    })
+  })
+})
